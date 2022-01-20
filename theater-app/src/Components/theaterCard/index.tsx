@@ -1,3 +1,3 @@
-export function SavedTheaters() {
+export function TheaterCard() {
 
 }
