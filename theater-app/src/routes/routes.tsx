@@ -1,16 +1,18 @@
+// react imports
 import { useGlobalContext } from '../contexts/global.context'
 import { Routes, Route, Link, useNavigate } from 'react-router-dom'
 
-
+// views
 import { LoginView } from '../views/public/login.view'
 import { SignupView } from '../views/public/signup.view'
 import { NotFound404 } from '../views/public/NotFound404'
-
 import { PerformanceSearch } from '../views/public/performanceSearch.view'
 import { AuditionSearchView } from '../views/public/auditionSearch.view'
 import { SavedTheaterView } from '../views/protected/savedTheaters.view'
-
 import { HomeView } from '../views/public/home.view'
+
+// Semantic Ui imports 
+import { Header } from 'semantic-ui-react'
 
 
 
@@ -38,6 +40,7 @@ export function MainRoutes() {
 
     return (
         <div>
+            <Header />
             {loggedIn ? <ProtectedView /> : <PublicView />}
 
 
@@ -59,7 +62,7 @@ export function MainRoutes() {
                 </Route>
 
                 <Route path="/login" element={<LoginView />} />
-                {/* <Route path="/sign-up" element={<SignUpView />} /> */}
+                <Route path="/sign-up" element={<SignupView />} />
                 <Route path="*" element={<NotFound404 />} />
 
             </Routes>
