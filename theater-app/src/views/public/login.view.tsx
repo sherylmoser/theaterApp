@@ -1,6 +1,9 @@
+
+import { Header } from "../../Components/header/Header";
 import { ChangeEvent, useState } from "react";
 import { auth } from '../../firebase';
 import firebase from 'firebase';
+
 
 
 export function LoginView() {
@@ -26,10 +29,15 @@ export function LoginView() {
 	}
 
     return (
-        <form onSubmit={submitHandler}>
+
+        <div>
+            <Header />
+            <form onSubmit={submitHandler}>
             <input required onChange={emailHandler} value={email} type="email" placeholder='Email' />
-			<input required onChange={passwordHandler} value={password} type="password" placeholder='Password' />
+			      <input required onChange={passwordHandler} value={password} type="password" placeholder='Password' />
             <input type="submit" value="Login" />
-        </form>
+          </form>
+        </div>
+
     )
 }

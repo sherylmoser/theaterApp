@@ -13,6 +13,8 @@ import { HomeView } from '../views/public/home.view'
 
 // Semantic Ui imports 
 import { Header, Menu } from 'semantic-ui-react'
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
 
 
@@ -36,42 +38,15 @@ export function PublicView(props: any) {
 }
 
 export function MainRoutes() {
-    const loggedIn = useGlobalContext()
+    const user = useContext(AuthContext);
 
     return (
         <div>
-            {/* <Header />
-             */}
-            <div className="ui secondary  menu">
-                <a className="active item">
-                    Home
-                </a>
-                <a className="item">
-                    Messages
-                </a>
-                <a className="item">
-                    Friends
-                </a>
-                <div className="right menu">
-                    <div className="item">
-                        <div className="ui icon input">
-                            {/* <input type="text" placeholder="Search..."> */}
-                            <i className="search link icon"></i>
-                        </div>
-                    </div>
-                    <a className="ui item">
-                        Logout
-                    </a>
-                </div>
-            </div>
-
-
-
-            {loggedIn ? <ProtectedView /> : <PublicView />}
-
+           <Header />
+            {user ? <ProtectedView /> : <PublicView />}
 
             <Routes>
-                {/* <Route path='/' element={<HomeView />} */}
+
                 <Route path='/' element={<HomeView />} />
 
                 <Route path='/audtion_search'>
@@ -88,13 +63,10 @@ export function MainRoutes() {
                 </Route>
 
                 <Route path="/login" element={<LoginView />} />
-                <Route path="/sign-up" element={<SignupView />} />
+                <Route path="/sign_up" element={<SignupView />} />
                 <Route path="*" element={<NotFound404 />} />
 
             </Routes>
         </div>
-
     )
-
-
 }
