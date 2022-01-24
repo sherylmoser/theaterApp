@@ -1,7 +1,12 @@
+import { Header } from "../../Components/header/Header";
+
 export function LoginView() {
     return (
         <div>
-            Log in view
+            <Header />
+            <div>
+                Log in view
+            </div>
         </div>
     )
 }
