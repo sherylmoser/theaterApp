@@ -1,6 +1,7 @@
 import { ChangeEvent, useContext, useState } from 'react';
 import { auth } from '../../firebase';
 import firebase from 'firebase';
+import { Header } from '../../Components/header/Header';
 
 export default function SignupView() {
 	const [ email, setEmail ] = useState('');
@@ -44,6 +45,7 @@ export default function SignupView() {
     
 	return (
 		<div className="App">
+			<Header />
 			<form onSubmit={submitHandler}>
 				<input required onChange={emailHandler} value={email} type="email" placeholder='Email' />
 				<input required onChange={passwordHandler} value={password} type="password" placeholder='Password' />
