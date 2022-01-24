@@ -1,10 +1,10 @@
 // react imports
-import { useGlobalContext } from '../contexts/global.context'
+import { useGlobalContext } from '../context/global.context'
 import { Routes, Route, Link, useNavigate } from 'react-router-dom'
 
 // views
 import { LoginView } from '../views/public/login.view'
-import { SignupView } from '../views/public/signup.view'
+import SignupView from '../views/public/signup.view';
 import { NotFound404 } from '../views/public/NotFound404'
 import { PerformanceSearch } from '../views/public/performanceSearch.view'
 import { AuditionSearchView } from '../views/public/auditionSearch.view'
