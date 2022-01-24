@@ -9,10 +9,11 @@ import { Header } from '../../Components/header/Header'
 
 
 export function HomeView() {
-    
-    
+
+
     return (
         <>
+            <Header />
             <Container className="home-logo">
                 <Image src="../logo.png" className="logo" />
                 <h1>Welcome to On Stage!</h1>
