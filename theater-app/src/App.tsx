@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { AuthContext } from './context/AuthContext';
 import { auth, dbUsers } from './firebase';
+import { MainRoutes } from './routes/routes';
 import './styles/App.css';
-import SignupView from './views/public/signup.view';
 
 function App() {
 
@@ -19,9 +19,7 @@ function App() {
   }
   return (
     <div className="App">
-      {!user ? <SignupView /> : <h1>Hello you are logged in</h1>}
-      <button onClick={signOutHandler}>Sign out</button>
-      <button onClick={addTheaterHandler}>Add</button>
+      <MainRoutes />
     </div>
   );
 }
