@@ -1,38 +1,27 @@
-import React, { useState, ChangeEvent } from 'react';
-import logo from './logo.svg';
+import { useContext } from 'react';
+import { AuthContext } from './context/AuthContext';
+import { auth, dbUsers } from './firebase';
 import './styles/App.css';
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import SignupView from './views/public/signup.view';
 
-import { SignupView } from './views/public/signup.view';
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyARFqRZo5aiNDXPi7anHBOzOYTvRT2Qo_o",
-  authDomain: "onstagetheaterapp.firebaseapp.com",
-  projectId: "onstagetheaterapp",
-  storageBucket: "onstagetheaterapp.appspot.com",
-  messagingSenderId: "640759180361",
-  appId: "1:640759180361:web:5827ab51fe8ac81ecaa398"
-};
-
-// export FirebaseCrap; 
 function App() {
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore();
+  const user = useContext(AuthContext);
 
-
-
+  function signOutHandler() {
+    auth.signOut()
+  }
+  function addTheaterHandler() {
+    dbUsers.doc(user?.uid)
+      .update({
+        connectedTheaters: 'test'
+      })
+  }
   return (
     <div className="App">
-      <SignupView />
-
+      {!user ? <SignupView /> : <h1>Hello you are logged in</h1>}
+      <button onClick={signOutHandler}>Sign out</button>
+      <button onClick={addTheaterHandler}>Add</button>
     </div>
   );
 }

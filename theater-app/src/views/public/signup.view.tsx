@@ -1,59 +1,56 @@
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { useState, ChangeEvent } from "react";
+import { ChangeEvent, useContext, useState } from 'react';
+import { auth } from '../../firebase';
+import firebase from 'firebase';
 
-export function SignupView() {
-    const [email, setEmail] = useState<string | ''>('')
-    const [password, setPassword] = useState<string | ''>('')
-    const [fname, setFName] = useState<string | ''>('')
-    const [lname, setLName] = useState<string | ''>('')
-    const [zipCode, setZipCode] = useState<string | ''>('')
+export default function SignupView() {
+	const [ email, setEmail ] = useState('');
+	const [ password, setPassword ] = useState<string | ''>('');
+    const [ name, setName ] = useState<string | ''>('')
+	const [ zipCode, setZipCode ] = useState<string | ''>('')
 
-    function passwordHandler(e: ChangeEvent<HTMLInputElement>) {
-        setPassword(e.target.value)
+	async function submitHandler(e: ChangeEvent<HTMLFormElement>) {
+		e.preventDefault();
+        try {
+            const cred = await auth.createUserWithEmailAndPassword(email, password);
+            const uid = cred.user?.uid;
+            firebase.firestore().collection('users').doc(uid)
+                .set({
+                    user_uid: uid,
+                    name: name,
+					zipCode: zipCode,
+					connectedTheaters: ['whasdt','qwefsdf']
+                })
+            setEmail('');
+            setPassword('');
+            setName('');
+            setZipCode('')
+        } catch(e) {
+            alert(e);
+        }
+	}
+
+	function emailHandler(e: ChangeEvent<HTMLInputElement>) {
+		setEmail(e.target.value);
+	}
+	function passwordHandler(e: ChangeEvent<HTMLInputElement>) {
+		setPassword(e.target.value);
+	}
+    function nameHandler(e: ChangeEvent<HTMLInputElement>) {
+        setName(e.target.value)
     }
-
-    function emailHandler(e: ChangeEvent<HTMLInputElement>) {
-        setEmail(e.target.value)
-    }
-
-    function fnameHandler(e: ChangeEvent<HTMLInputElement>) {
-        setFName(e.target.value)
-    }
-
-    function lnameHandler(e: ChangeEvent<HTMLInputElement>) {
-        setLName(e.target.value)
-    }
-
-    function zipCodeHandler(e: ChangeEvent<HTMLInputElement>) {
-        setZipCode(e.target.value)
-    }
-
-    function formHandler(e: ChangeEvent<HTMLFormElement>) {
-        e.preventDefault();
-        const auth = getAuth();
-
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-                console.log(user);
-
-                // ...
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // ..
-            });
-    }
-    return (
-        <form onSubmit={formHandler}>
-            <input onChange={fnameHandler} type="text" value={fname} placeholder="First Name" />
-            <input onChange={lnameHandler} type="text" value={lname} placeholder="Last Name" />
-            <input onChange={zipCodeHandler} type="text" value={zipCode} placeholder="Zip Code" />
-            <input onChange={emailHandler} value={email} type="email" name="email" placeholder="Email" />
-            <input onChange={passwordHandler} type="password" name="password" value={password} placeholder="Password" />
-            <input type="submit" value="Sign Up" />
-        </form>
-    )
+	function zipCodeHandler(e: ChangeEvent<HTMLInputElement>) {
+		setZipCode(e.target.value)	
+	}
+    
+	return (
+		<div className="App">
+			<form onSubmit={submitHandler}>
+				<input required onChange={emailHandler} value={email} type="email" placeholder='Email' />
+				<input required onChange={passwordHandler} value={password} type="password" placeholder='Password' />
+				<input required onChange={nameHandler} value={name} type="text" placeholder='Name' />
+				<input type="text" onChange={zipCodeHandler} value={zipCode} placeholder='Zip Code'/>
+				<input type="submit" value="Sign Up" />
+			</form>
+		</div>
+	);
 }
