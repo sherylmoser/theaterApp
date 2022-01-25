@@ -9,6 +9,10 @@
   --largeFont: 2.5rem;
   --padding: 1em;
   --margin: 1em;
+  --border-radius: 2em;
+  --hover-boxshadow:  0 7px 15px 5px rgba(0, 0, 0, 0.214);
+  --active-boxshadow: 0 3px 7px 2.5px rgba(0, 0, 0, 0.214);
+  --transition: .2s ease-in;
 }
 
 body {

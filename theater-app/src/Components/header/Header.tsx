@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { dbTheaters } from "../../firebase";
 import { ScriptSnapshot } from "typescript";
 
+// CSS Import
+import './Header.css'
+
 
 // async function name(params:type) {
 //     const snap = await firebase.fireStore().collection('events').get()
@@ -39,10 +42,11 @@ export function Header() {
                 <div className="right menu">
                     {user ?
                         <div>
-                            <h1>{user?.displayName}</h1>
-                            <Button onClick={() => { console.log('logged out'); auth.signOut() }}>Sign Out</Button>
-                        </div>
-                        :
+                            <span>Welcome, {user?.displayName}</span>
+                            <Button onClick={() => { console.log('logged out'); auth.signOut()}}>Sign Out</Button>
+                        </div> 
+                        : 
+
                         <div>
                             <Button onClick={() => { console.log('Logged in'); nav('/login'); theaters(); }}>Login</Button>
                             <Button onClick={() => { console.log('Sign up '); nav('/sign_up') }}>Sign up</Button>
