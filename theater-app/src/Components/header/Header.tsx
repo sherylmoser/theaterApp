@@ -10,50 +10,50 @@ import { ScriptSnapshot } from "typescript";
 import './Header.css'
 
 
-// async function name(params:type) {
-//     const snap = await firebase.fireStore().collection('events').get()
-//     return ScriptSnapshot.docs.map(doc => doc.data())
-
-// }
 export function Header() {
     const user = useContext(AuthContext);
     const nav = useNavigate();
 
-    const theaters = async () => {
-        const snap = await db.collection('theaters').get()
-        console.log(snap.docs.map(doc => doc.data()))
-        return snap.docs.map(doc => doc.data())
-    }
+    // const theaters = async () => {
+    //     const snap = await db.collection('theaters').get()
+    //     console.log(snap.docs.map(doc => doc.data()))
+    //     return snap.docs.map(doc => doc.data())
+    // }
 
 
 
     return (
-        <div className="menu-container">
-            <div className="ui secondary pointing menu">
+            <div className="ui secondary pointing menu header">
                 <a href="/" className="item">
                     <Image src="../logo.png" className="header-logo" />
                 </a>
                 <a href='/performance_search' className="item">
-                    Performances
+                    Theater Search
                 </a>
                 <a href="/audtion_search" className="item">
                     Auditions
                 </a>
+                {
+                    user ? <a href="/saved_theaters" className="item">Saved Theater</a> : null
+                }
+                
                 <div className="right menu">
                     {user ?
-                        <div>
+                        <div className="logged-In-Header">
                             <span>Welcome, {user?.displayName}</span>
+
                             <Button onClick={() => { console.log('logged out'); auth.signOut(); window.localStorage.removeItem("TheaterCompany") }}>Sign Out</Button>
                         </div>
                         :
 
-                        <div>
-                            <Button onClick={() => { console.log('Logged in'); theaters(); nav('/login');}}>Login</Button>
-                            <Button onClick={() => {console.log('Sign up '); nav('/sign_up')}}>Sign up</Button>
 
-                        </div>}
+                        <div className="logged-In-Header">
+                            <Button onClick={() => { nav('/login');}}>Login</Button>
+                            <Button onClick={() => { nav('/sign_up')}}>Sign up</Button>
+                        </div>
+                        }
                 </div>
             </div>
-        </div>
+        
     )
 }

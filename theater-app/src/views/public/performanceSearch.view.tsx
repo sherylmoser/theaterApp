@@ -1,8 +1,9 @@
 import { deepStrictEqual } from "assert";
-import { ChangeEvent, ChangeEventHandler, useEffect, useState } from "react";
+import { ChangeEvent, ChangeEventHandler, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 import { Header } from "../../Components/header/Header";
+import { AuthContext } from "../../context/AuthContext";
 import { db } from '../../firebase'
 
 
@@ -17,7 +18,9 @@ type theaterType = {
 
 export function PerformanceSearch() {
     const [search, setSearch] = useState<string>('');
-    const [theatersState, setTheaterState ] = useState<any>('')
+    const [theatersState, setTheaterState ] = useState<any>('');
+    const user = useContext(AuthContext);
+
     // get the search
     const handleSearch = ({ target: { value } }: any) => {
         setSearch(value)
@@ -49,8 +52,11 @@ export function PerformanceSearch() {
 
     
     function handleSave(theater:string){
-        console.log(theater)
+        console.log(user, 'user');
+        console.log(theater, 'theater');
         
+
+
     }
 
     return (

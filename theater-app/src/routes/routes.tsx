@@ -55,8 +55,8 @@ export function MainRoutes() {
                     <Route path='' element={<PerformanceSearch />} />
                 </Route>
                 <Route path="/saved_theaters" >
-                    <Route path=":id" element={<ProtectedView> <SavedTheaterView /> </ProtectedView>} />
-                    <Route path="" element={<ProtectedView> <SavedTheaterView /> </ProtectedView>} />
+                    <Route path=":id" element={<SavedTheaterView /> }/>
+                    <Route path="" element={<SavedTheaterView /> } />
                 </Route>
                 <Route path="/profile" >
                     <Route path=":id" element={<ProtectedView> <ProfileView /> </ProtectedView>} />
