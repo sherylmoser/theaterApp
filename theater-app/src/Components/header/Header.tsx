@@ -43,9 +43,9 @@ export function Header() {
                     {user ?
                         <div>
                             <span>Welcome, {user?.displayName}</span>
-                            <Button onClick={() => { console.log('logged out'); auth.signOut()}}>Sign Out</Button>
-                        </div> 
-                        : 
+                            <Button onClick={() => { console.log('logged out'); auth.signOut(); window.localStorage.removeItem("TheaterCompany") }}>Sign Out</Button>
+                        </div>
+                        :
 
                         <div>
                             <Button onClick={() => { console.log('Logged in'); theaters(); nav('/login');}}>Login</Button>
