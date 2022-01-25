@@ -3,6 +3,7 @@ import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { auth, db } from '../../firebase';
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import '../../styles/signup.view.css';
 
 
 
@@ -12,7 +13,7 @@ export function LoginView() {
 
     const user = useContext(AuthContext)
 
-	const nav = useNavigate();
+    const nav = useNavigate();
 
     async function submitHandler(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -54,12 +55,21 @@ export function LoginView() {
     return (
         <div>
             <Header />
-            <form onSubmit={submitHandler}>
-                <input required onChange={emailHandler} value={email} type="email" placeholder='Email' />
-                <input required onChange={passwordHandler} value={password} type="password" placeholder='Password' />
-                <input type="submit" value="Login" />
-            </form>
+            <div className="pj-form">
+                <span>Login</span>
+                <form onSubmit={submitHandler}>
+                    <input required onChange={emailHandler} value={email} type="email" placeholder="Email" />
+                    <input
+                        required
+                        onChange={passwordHandler}
+                        value={password}
+                        type="password"
+                        placeholder="Password"
+                    />
+                    <input type="submit" value="Login" />
+                </form>
+            </div>
         </div>
-    )
+    );
 }
 
