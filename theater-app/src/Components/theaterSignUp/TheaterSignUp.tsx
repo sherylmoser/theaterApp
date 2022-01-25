@@ -61,7 +61,7 @@ export default function TheaterSignUp() {
 				<input required onChange={passwordHandler} value={password} type="password" placeholder='Password' />
 				<input required onChange={nameHandler} value={name} type="text" placeholder='Theater Name' />
                 <input required type="tel" onChange={phoneHandler} value={phone} placeholder='Phone Number'  />
-                <input required type='url' onChange={websiteHanlder} value={website} placeholder='Website URL' />
+                <input type='url' onChange={websiteHanlder} value={website} placeholder='https://www.YourTheaterWebsiteHere.com' />
 				<input type="text" onChange={zipCodeHandler} value={zipCode} placeholder='Zip Code'/>
 				<input type="submit" value="Sign Up" />
 			</form>
