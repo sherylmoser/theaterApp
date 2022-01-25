@@ -48,8 +48,9 @@ export function Header() {
                         : 
 
                         <div>
-                            <Button onClick={() => { console.log('Logged in'); nav('/login'); theaters(); }}>Login</Button>
-                            <Button onClick={() => { console.log('Sign up '); nav('/sign_up') }}>Sign up</Button>
+                            <Button onClick={() => { console.log('Logged in'); theaters(); nav('/login');}}>Login</Button>
+                            <Button onClick={() => {console.log('Sign up '); nav('/sign_up')}}>Sign up</Button>
+
                         </div>}
                 </div>
             </div>
