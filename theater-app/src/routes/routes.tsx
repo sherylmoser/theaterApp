@@ -42,9 +42,6 @@ export function MainRoutes() {
 
     return (
         <div>
-            <Header />
-            {user ? <ProtectedView /> : <PublicView />}
-
             <Routes>
 
                 <Route path='/' element={<HomeView />} />

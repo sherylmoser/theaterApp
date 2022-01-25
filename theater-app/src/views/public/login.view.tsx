@@ -1,4 +1,3 @@
-
 import { Header } from "../../Components/header/Header";
 import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { auth, db } from '../../firebase';
@@ -13,7 +12,7 @@ export function LoginView() {
 
     const user = useContext(AuthContext)
 
-    const nav = useNavigate()
+	const nav = useNavigate();
 
     async function submitHandler(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -63,3 +62,4 @@ export function LoginView() {
         </div>
     )
 }
+
