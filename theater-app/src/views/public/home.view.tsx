@@ -15,7 +15,6 @@ export function HomeView() {
         <>
             <Header />
             <Container className="home-logo">
-                <Image src="../logo.png" className="logo" />
                 <h1>Welcome to On Stage!</h1>
             </Container>
             <Container className="home-info">

@@ -1,0 +1,77 @@
+.pj-form form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: thin solid black;
+    border-right: thin solid black;
+    border-radius: var(--border-radius);
+    padding: 3rem;
+}
+.pj-form {
+    max-width: 500px;
+    margin: 0vh auto 0;
+    padding: 0 2rem;
+    min-height: calc(100vh - 120px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.pj-form input {
+    border: none;
+}
+.pj-button {
+    transition: transform var(--transition);
+}
+.pj-form button:focus {
+    outline: none;
+}
+.pj-form button:hover:not(:disabled),
+.pj-form button:focus {
+    transform: scale(1.02);
+}
+.pj-form input:not([type="submit"]) {
+    margin-bottom: 1rem;
+    border-bottom: thin solid black;
+    padding: .5em 1em;
+    transition: border .3s ease-in;
+}
+.pj-form input:not([type="submit"]):focus {
+    outline: none;
+    border-bottom-color: var(--red);
+    border-bottom-width: 4px;
+}
+.pj-form input:nth-last-child(2) {
+    margin-bottom: 2rem;
+}
+.pj-form input[type='submit'] {
+    align-self: center;
+    padding: 1em 2em;
+    cursor: pointer;
+    background-color: var(--red);
+    border-radius: var(--border-radius);
+    color: var(--white);
+    transition: all var(--transition);
+}
+.pj-form input[type='submit']:hover,
+.pj-form input[type='submit']:focus {
+    box-shadow: var(--hover-boxshadow);
+    transform: translateY(-2px);
+}
+.pj-form input[type='submit']:active {
+    box-shadow: var(--active-boxshadow);
+}
+.pj-form input[type='submit']:focus {
+    outline: none;
+}
+.pj-toggle {
+    background: none;
+    border: none;
+    padding: 1em 1em 1em 0;
+    font-size: clamp(1.1rem, 4.5vw, 2rem);
+}
+.pj-toggle:not(:disabled) {
+    cursor: pointer;
+}
+.pj-toggle:disabled {
+    color: var(--red);
+}

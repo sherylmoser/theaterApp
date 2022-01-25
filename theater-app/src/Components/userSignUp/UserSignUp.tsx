@@ -1,13 +1,17 @@
-import { ChangeEvent, useContext, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { auth } from '../../firebase';
 import firebase from 'firebase';
+import { useNavigate } from 'react-router-dom';
 
 export default function UserSignUp() {
+
 	const [ email, setEmail ] = useState('');
 	const [ password, setPassword ] = useState<string | ''>('');
     const [ firstName, setFirstName ] = useState<string | ''>('')
     const [ lastName, setLastName ] = useState<string | ''>('')
 	const [ zipCode, setZipCode ] = useState<string | ''>('')
+
+	const nav = useNavigate()
 
 	async function submitHandler(e: ChangeEvent<HTMLFormElement>) {
 		e.preventDefault();
@@ -22,10 +26,16 @@ export default function UserSignUp() {
 					zipCode: zipCode,
 					connectedTheaters: ['whasdt','qwefsdf']
                 })
+			const user = firebase.auth().currentUser;
+			await user?.updateProfile({
+				displayName: firstName
+			  })
             setEmail('');
             setPassword('');
             setFirstName('');
-            setZipCode('')
+			setLastName('')
+            setZipCode('');
+			nav('/')
         } catch(e) {
             alert(e);
         }
