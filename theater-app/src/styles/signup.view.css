@@ -1,3 +1,6 @@
+h1 {
+    opacity: 1;
+}
 .pj-form form {
     display: flex;
     flex-direction: column;
@@ -11,7 +14,7 @@
     max-width: 500px;
     margin: 0vh auto 0;
     padding: 0 2rem;
-    min-height: calc(100vh - 120px);
+    min-height: calc(100vh - 50px);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -74,4 +77,50 @@
 }
 .pj-toggle:disabled {
     color: var(--red);
+}
+.pj-form span {
+    font-size: clamp(1.1rem, 4.5vw, 2rem);
+    padding: 1em 1em 1em 0;
+    color: var(--red);
+}
+
+.pj-form input:nth-child(1) {
+    animation-name: slide;
+    animation-duration: calc(var(--animation-delay) * 1);
+}
+.pj-form input:nth-child(2) {
+    animation-name: slide;
+    animation-duration: calc(var(--animation-delay) * 2);
+}
+.pj-form input:nth-child(3) {
+    animation-name: slide;
+    animation-duration: calc(var(--animation-delay) * 3);
+}
+.pj-form input:nth-child(4) {
+    animation-name: slide;
+    animation-duration: calc(var(--animation-delay) * 4);
+}
+.pj-form input:nth-child(5) {
+    animation-name: slide;
+    animation-duration: calc(var(--animation-delay) * 5);
+}
+.pj-form input:nth-child(6) {
+    animation-name: slide;
+    animation-duration: calc(var(--animation-delay) * 6);
+}
+.pj-form input:nth-child(7) {
+    animation-name: slide;
+    animation-duration: calc(var(--animation-delay) * 7);
+}
+
+
+@keyframes slide {
+    from {
+        opacity: 0;
+        transform: translateX(60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
