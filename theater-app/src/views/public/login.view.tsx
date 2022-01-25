@@ -33,6 +33,7 @@ export function LoginView() {
 		<div>
 			<Header />
 			<div className="pj-form">
+                <span>Login</span>
 				<form onSubmit={submitHandler}>
 					<input required onChange={emailHandler} value={email} type="email" placeholder="Email" />
 					<input
