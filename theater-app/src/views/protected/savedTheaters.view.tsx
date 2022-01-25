@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { Header } from "../../Components/header/Header";
 import { AuthContext } from "../../context/AuthContext";
 import { db } from "../../firebase";
@@ -15,7 +15,8 @@ export function SavedTheaterView() {
          userCollection.get().then((doc) => {
             if (doc.exists){
                 const data =  doc.data()
-                setSavedTheaters(data)
+                const savedTheaters = data?.connectedTheaters; 
+                setSavedTheaters(savedTheaters)
 
             } else {
                 console.log('not found')
@@ -24,6 +25,10 @@ export function SavedTheaterView() {
 
     }
     // userSavedTheaters()
+    // useMemo(() => {
+    //     userSavedTheaters()
+    //     console.log(savedTheaters)
+    // }, []);
 
     // useEffect(() => {
     //   console.log(savedTheaters)
