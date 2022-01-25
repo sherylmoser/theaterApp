@@ -2,7 +2,7 @@
 import { Header } from "../../Components/header/Header";
 import { ChangeEvent, useState } from "react";
 import { auth } from '../../firebase';
-import firebase from 'firebase';
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -10,12 +10,15 @@ export function LoginView() {
     const [ email, setEmail ] = useState('');
 	const [ password, setPassword ] = useState<string | ''>('');
 
+    const nav = useNavigate()
+
     async function submitHandler(e: ChangeEvent<HTMLFormElement>) {
 		e.preventDefault();
         try {
             await auth.signInWithEmailAndPassword(email,password);
             setEmail('');
             setPassword('');
+            nav('/')
         } catch(e) {
             alert(e);
         }
@@ -29,7 +32,6 @@ export function LoginView() {
 	}
 
     return (
-
         <div>
             <Header />
             <form onSubmit={submitHandler}>
@@ -38,6 +40,5 @@ export function LoginView() {
             <input type="submit" value="Login" />
           </form>
         </div>
-
     )
 }
