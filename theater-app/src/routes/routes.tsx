@@ -1,5 +1,4 @@
 // react imports
-import { useGlobalContext } from '../context/global.context'
 import { Routes, Route, Link, useNavigate } from 'react-router-dom'
 
 // views
@@ -15,6 +14,7 @@ import { HomeView } from '../views/public/home.view'
 import { Header, Menu } from 'semantic-ui-react'
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import { ProfileView } from '../views/protected/profile.view';
 
 
 
@@ -42,9 +42,6 @@ export function MainRoutes() {
 
     return (
         <div>
-           <Header />
-            {user ? <ProtectedView /> : <PublicView />}
-
             <Routes>
 
                 <Route path='/' element={<HomeView />} />
@@ -60,6 +57,10 @@ export function MainRoutes() {
                 <Route path="/saved_theaters" >
                     <Route path=":id" element={<SavedTheaterView /> }/>
                     <Route path="" element={<SavedTheaterView /> } />
+                </Route>
+                <Route path="/profile" >
+                    <Route path=":id" element={<ProtectedView> <ProfileView /> </ProtectedView>} />
+                    <Route path="" element={<ProtectedView> <ProfileView /> </ProtectedView>} />
                 </Route>
 
                 <Route path="/login" element={<LoginView />} />
