@@ -1,4 +1,5 @@
 
+import firebase from "firebase";
 import { ReactChild, ReactFragment, ReactPortal, useContext, useEffect, useMemo, useState } from "react";
 
 import { Header } from "../../Components/header/Header";
@@ -33,7 +34,19 @@ export function SavedTheaterView() {
 
     }, [user, setSavedTheaters])
 
+   const handleDisconnect = async ( theater: theaterType) => {
+       const userID = user?.uid; 
+       const usercollection = db.collection('users').doc(userID)
 
+        await usercollection.update({
+            connectedTheaters: firebase.firestore.FieldValue.arrayRemove(theater)
+        })
+        const updatedTheaters = savedTheaters.filter((theaterObj : theaterType)  => theaterObj.name != theater.name)
+
+        // console.log(updatedTheaters)
+        setSavedTheaters(updatedTheaters)
+
+   }
 
     return (
         <>
@@ -53,6 +66,7 @@ export function SavedTheaterView() {
                                     <li>{theater?.website}</li>
                                     <li>{theater?.zipcode}</li>
                                 </ul>
+                                <button onClick={() => handleDisconnect(theater)}>Disconnect</button>
                             </div>
                         )
                     }) : <div>No connected theater</div>

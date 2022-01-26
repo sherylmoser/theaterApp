@@ -22,6 +22,7 @@ export function Header() {
 
 
     return (
+
         <div className="ui secondary pointing menu header">
             <Image src="../logo.png" className="logo-image" />
             <a href="/" className="logo-text item">
@@ -49,9 +50,11 @@ export function Header() {
                         <Button onClick={() => { nav('/login'); }}>Login</Button>
                         <Button onClick={() => { nav('/sign_up') }}>Sign up</Button>
                     </div>
+
                 }
             </div>
         </div>
+
 
     )
 }
