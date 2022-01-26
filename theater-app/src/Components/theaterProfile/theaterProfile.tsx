@@ -37,21 +37,15 @@ export function TheaterProfile() {
 
     const user = useContext(AuthContext)
     const uid = user?.uid;
-    console.log("User UID", uid);
+    // console.log("User UID", uid);
 
     let theaterData: TheaterType | undefined;
     let docRef = db.collection("theaters").doc(uid)
 
-
-    // .onSnapshot((doc) => {
-    //     console.log('Doc', doc.data())
-    //     theaterData = doc.data()
-    // });
-
     useEffect(() => {
         async function getdata() {
             const theaterObject = await docRef.get().then(doc => {
-                console.log("docref data", doc.data())
+                // console.log("docref data", doc.data())
                 theaterData = { ...doc.data() };
             }).catch(error => {
                 console.log(error)
@@ -63,7 +57,7 @@ export function TheaterProfile() {
         getdata()
     }, [user, setTheaterInfo])
 
-    console.log("THEATER INFO", { ...theaterInfo })
+    console.log("Theater Name", theaterInfo?.name)
 
 
     return (
