@@ -23,7 +23,6 @@ body {
   font-family: var(--blockFont);
 }
 
-
 .image.logo-image {
   width: 1em;
 }
@@ -31,20 +30,6 @@ body {
 .logo-text {
   font-family: var(--cursiveFont);
   font-size: 1.7rem;
-  align-self: end;
-
-.logo{
-  margin-top: 1.5em;
-}
-
-.image.header-logo {
-  width: 2rem;
-  margin-right: var(--margin);
-}
-
-.cursive-logo {
-  font-family: var(--cursiveFont);
-  font-size: 2rem;
 }
 
 .container.home-logo {
