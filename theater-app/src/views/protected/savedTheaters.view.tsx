@@ -1,7 +1,10 @@
+
 import { ReactChild, ReactFragment, ReactPortal, useContext, useEffect, useMemo, useState } from "react";
+
 import { Header } from "../../Components/header/Header";
 import { AuthContext } from "../../context/AuthContext";
 import { db } from "../../firebase";
+
 
 type theaterType = {
     name: string;
@@ -31,11 +34,13 @@ export function SavedTheaterView() {
    }, [user, setSavedTheaters])
 
 
+
     return (
         <>
             <Header />
 
             Saved Theaters
+
             <div>
                 { savedTheaters  ? 
                     savedTheaters?.map((theater: theaterType) => {
@@ -53,6 +58,7 @@ export function SavedTheaterView() {
                     }) : <div>No connected theater</div>
                 }
             </div>
+
         </>
     )
 }

@@ -1,11 +1,14 @@
 import { deepStrictEqual } from "assert";
+
 import firebase from "firebase";
+
 import { ChangeEvent, ChangeEventHandler, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 import { Header } from "../../Components/header/Header";
 import { AuthContext } from "../../context/AuthContext";
 import { db } from '../../firebase'
+import { Loader } from 'semantic-ui-react'
 
 
 type theaterType = {
@@ -52,6 +55,7 @@ export function PerformanceSearch() {
     }, [search]);
 
     
+
     const handleSave =  async (theater:theaterType) => {
         // console.log(user?.uid, 'user');
 
@@ -64,7 +68,10 @@ export function PerformanceSearch() {
             connectedTheaters: firebase.firestore.FieldValue.arrayUnion(theater)
         })
 
+
         
+
+
     }
 
     return (
@@ -96,14 +103,16 @@ export function PerformanceSearch() {
                                     <li>{e.zipcode}</li>
                                     <li>{e.theater_uid}</li>
                                     <button onClick={ () => {
+
                                         handleSave(e)
                                         
+
                                     }}>Save Theater</button>
                                 </ul>
 
                             </div>
                         )
-                    }) : <div>No results </div>
+                    }) : <Loader active inline />
                 }
             </div>
         </div>

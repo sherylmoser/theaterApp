@@ -1,3 +1,7 @@
 .ui.secondary.pointing.menu {
 	align-items: center;
+    padding: 0 1.14285714em;
+}
+.ui.secondary.pointing.menu button:not(:last-child) {
+    margin-right: 1.14285714em;
 }

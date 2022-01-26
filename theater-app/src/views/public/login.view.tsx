@@ -28,8 +28,6 @@ export function LoginView() {
             await docRef.get().then((doc) => {
                 console.log("DOC", doc)
                 if (doc.exists) {
-                    console.log("Document data:", doc.data());
-                    console.log("this worked");
                     window.localStorage.setItem("TheaterCompany", "true")
                 } else {
                     // doc.data() will be undefined in this case

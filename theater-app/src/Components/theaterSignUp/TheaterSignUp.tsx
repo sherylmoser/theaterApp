@@ -26,6 +26,10 @@ export default function TheaterSignUp() {
                     website: website,
                     zipCode: zipCode,
                 })
+                const user = firebase.auth().currentUser;
+			    await user?.updateProfile({
+				    displayName: name
+			  })
             setEmail('');
             setPassword('');
             setName('');
@@ -33,7 +37,7 @@ export default function TheaterSignUp() {
             setPhoneNumber('');
             setWebsite('');
             window.localStorage.setItem("TheaterCompany", "true")
-            nav('/');
+            nav('/profile');
         } catch (e) {
             alert(e);
         }

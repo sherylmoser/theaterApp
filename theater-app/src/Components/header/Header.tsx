@@ -9,7 +9,6 @@ import { ScriptSnapshot } from "typescript";
 // CSS Import
 import './Header.css'
 
-
 export function Header() {
     const user = useContext(AuthContext);
     const nav = useNavigate();
@@ -21,10 +20,10 @@ export function Header() {
     // }
 
 
-
     return (
             <div className="ui secondary pointing menu header">
-                <a href="/" className="item">
+                <a href="/">
+
                     <Image src="../logo.png" className="header-logo" />
                 </a>
                 <a href='/performance_search' className="item">
