@@ -126,28 +126,9 @@ export function PerformanceSearch() {
                                 </div>
                             </div>
                         )
-                    }) : <Loader active inline />
-                    // theatersState != '' ? 
-                    // theatersState.map((e : theaterType) => {
-                    //     return (
-                    //         <div key={e.theater_uid}className="theater-card">
-                    //             <h2>{e.name}</h2>
-                    //             <ul>
-                    //                 <li>{e.phone}</li>
-                    //                 <li>{e.website}</li>
-                    //                 <li>{e.zipcode}</li>
-                    //                 <li>{e.theater_uid}</li>
-                    //                 <button onClick={ () => {
 
-                    //                     handleSave(e)
-                                        
+                    }) : search.length == 0 ? <Loader active inline /> : <div>No Results Found</div>
 
-                    //                 }}>Save Theater</button>
-                    //             </ul>
-
-                    //         </div>
-                    //     )
-                    // }) : <Loader active inline />
                 }
             </div>
         </div>
