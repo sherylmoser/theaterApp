@@ -15,15 +15,15 @@ type theaterType = {
     name: string;
     phone?: string;
     website?: string;
-    zipcode?: string; 
-    theater_uid: string; 
+    zipcode?: string;
+    theater_uid: string;
 }
 
 
 export function PerformanceSearch() {
     const [search, setSearch] = useState<string>('');
-    const [theatersState, setTheaterState ] = useState<any>('');
-    const user = useContext(AuthContext);
+    const [theatersState, setTheaterState] = useState<any>('');
+    const { user } = useContext(AuthContext);
 
     // get the search
     const handleSearch = ({ target: { value } }: any) => {
@@ -38,30 +38,30 @@ export function PerformanceSearch() {
         const theaters = (await db.collection('theaters').get()).docs.map(doc => doc.data())
 
 
-        if(!search){
+        if (!search) {
             // all of the theaters
             return theaters
         }
         else {
             // filtered theaters 
-            return  theaters.filter((theater) => JSON.stringify(Object.values(theater)).toLocaleLowerCase().includes(loweredSearch))
+            return theaters.filter((theater) => JSON.stringify(Object.values(theater)).toLocaleLowerCase().includes(loweredSearch))
         }
-       
+
     }
 
     useEffect(() => {
-        theatersToReturn().then(e => { setTheaterState(e);})
+        theatersToReturn().then(e => { setTheaterState(e); })
 
     }, [search]);
 
-    
 
-    const handleSave =  async (theater:theaterType) => {
+
+    const handleSave = async (theater: theaterType) => {
         // console.log(user?.uid, 'user');
 
-        const userID = user?.uid; 
+        const userID = user?.uid;
         console.log('Adding to your saved theaters')
-        
+
         let usercollection = db.collection('users').doc(userID);
 
         usercollection.update({
@@ -69,14 +69,14 @@ export function PerformanceSearch() {
         })
 
 
-        
+
 
 
     }
 
     return (
         <div className="performanceView-main-con">
-            <Header /> 
+            <Header />
             <div className="performance-body">
                 <h2>Theater Search</h2>
                 <div >
@@ -86,33 +86,33 @@ export function PerformanceSearch() {
                             <i className="search icon"></i>
                         </div>
                         <div className="results">
-                           
+
                         </div>
                     </div>
-                </div>  
-                
+                </div>
+
                 {
-                    theatersState != '' ? 
-                    theatersState.map((e : theaterType) => {
-                        return (
-                            <div key={e.theater_uid}className="theater-card">
-                                <h2>{e.name}</h2>
-                                <ul>
-                                    <li>{e.phone}</li>
-                                    <li>{e.website}</li>
-                                    <li>{e.zipcode}</li>
-                                    <li>{e.theater_uid}</li>
-                                    <button onClick={ () => {
+                    theatersState != '' ?
+                        theatersState.map((e: theaterType) => {
+                            return (
+                                <div key={e.theater_uid} className="theater-card">
+                                    <h2>{e.name}</h2>
+                                    <ul>
+                                        <li>{e.phone}</li>
+                                        <li>{e.website}</li>
+                                        <li>{e.zipcode}</li>
+                                        <li>{e.theater_uid}</li>
+                                        <button onClick={() => {
 
-                                        handleSave(e)
-                                        
+                                            handleSave(e)
 
-                                    }}>Save Theater</button>
-                                </ul>
 
-                            </div>
-                        )
-                    }) : search.length == 0 ? <Loader active inline /> : <div>No Results Found</div>
+                                        }}>Save Theater</button>
+                                    </ul>
+
+                                </div>
+                            )
+                        }) : search.length == 0 ? <Loader active inline /> : <div>No Results Found</div>
                 }
             </div>
         </div>

@@ -23,12 +23,14 @@ body {
   font-family: var(--blockFont);
 }
 
-.image.header-logo {
-  width: 6rem;
+.image.logo-image {
+  width: 1em;
 }
 
-.logo {
-  width: 30%;
+.logo-text {
+  font-family: var(--cursiveFont);
+  font-size: 1.7rem;
+  align-self: end;
 }
 
 .container.home-logo {

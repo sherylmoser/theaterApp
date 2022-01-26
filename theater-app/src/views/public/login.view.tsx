@@ -11,36 +11,19 @@ export function LoginView() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState<string | ''>('');
 
-    const user = useContext(AuthContext)
+    const { user, onLogin } = useContext(AuthContext)
 
     const nav = useNavigate();
 
     async function submitHandler(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
-        try {
-            const { user } = await auth.signInWithEmailAndPassword(email, password);
-            setEmail('');
-            setPassword('');
-            console.log('User UID', `${user}`)
-
-            const docRef = db.collection("theaters").doc(`${user?.uid}`);
-
-            await docRef.get().then((doc) => {
-                console.log("DOC", doc)
-                if (doc.exists) {
-                    window.localStorage.setItem("TheaterCompany", "true")
-                } else {
-                    // doc.data() will be undefined in this case
-                    console.log("No such document!");
-                }
-            }).catch((error) => {
-                console.log("Error getting document:", error);
-            });
-            nav('/');
-        } catch (e) {
-            alert(e);
-        }
+        onLogin?.(email, password)
     }
+    useEffect(() => {
+        if (user) {
+            nav('/');
+        }
+    }, [user])
 
     function emailHandler(e: ChangeEvent<HTMLInputElement>) {
         setEmail(e.target.value);
