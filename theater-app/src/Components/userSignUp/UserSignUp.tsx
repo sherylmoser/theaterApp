@@ -24,7 +24,7 @@ export default function UserSignUp() {
                     firstName: firstName,
                     lastName: lastName,
 					zipCode: zipCode,
-					connectedTheaters: ['whasdt','qwefsdf']
+					connectedTheaters: []
                 })
 			const user = firebase.auth().currentUser;
 			await user?.updateProfile({

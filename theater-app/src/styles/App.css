@@ -4,6 +4,7 @@
   --red: rgb(191,10,58);
   --blue: rgb(2,135,217);
   --white: rgb(242,242,242);
+  --black: rgb(0, 0, 0);
   --smallFont: 1rem;
   --medFont: 1.5rem;
   --largeFont: 2.5rem;
@@ -13,7 +14,9 @@
   --hover-boxshadow:  0 7px 15px 5px rgba(0, 0, 0, 0.214);
   --active-boxshadow: 0 3px 7px 2.5px rgba(0, 0, 0, 0.214);
   --transition: .2s ease-in;
-  --animation-delay: .1s ;
+  --animation-delay: .1s;
+  --home-delay: .5s;
+  --default-padding: 1.14285714em;
 }
 
 body {
