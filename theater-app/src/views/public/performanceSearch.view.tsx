@@ -112,7 +112,7 @@ export function PerformanceSearch() {
 
                             </div>
                         )
-                    }) : <Loader active inline />
+                    }) : search.length == 0 ? <Loader active inline /> : <div>No Results Found</div>
                 }
             </div>
         </div>
