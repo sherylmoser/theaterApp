@@ -18,14 +18,25 @@ import { ProfileView } from '../views/protected/profile.view';
 
 
 
-export function ProtectedView(props: any) {
-    const { stuff } = props;
 
-    return (
-        <div>
-            {stuff}
-        </div>
-    )
+export function ProtectedView(props: any) {
+    const { view } = props; 
+    const user = useContext(AuthContext);
+    
+    if(!user) {
+        return (
+            null
+        )
+    } else {
+        return (
+            <div>
+                {view}
+            </div>
+        )
+    }
+
+
+    
 }
 
 export function PublicView(props: any) {

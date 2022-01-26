@@ -1,4 +1,5 @@
 import { deepStrictEqual } from "assert";
+import firebase from "firebase";
 import { ChangeEvent, ChangeEventHandler, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "semantic-ui-react";
@@ -31,7 +32,7 @@ export function PerformanceSearch() {
         const loweredSearch = search.toLocaleLowerCase()
 
         // grab the theaters from firebase
-        const theaters = await (await db.collection('theaters').get()).docs.map(doc => doc.data())
+        const theaters = (await db.collection('theaters').get()).docs.map(doc => doc.data())
 
 
         if(!search){
@@ -51,12 +52,19 @@ export function PerformanceSearch() {
     }, [search]);
 
     
-    function handleSave(theater:string){
-        console.log(user, 'user');
-        console.log(theater, 'theater');
+    const handleSave =  async (theater:theaterType) => {
+        // console.log(user?.uid, 'user');
+
+        const userID = user?.uid; 
+        console.log('Adding to your saved theaters')
         
+        let usercollection = db.collection('users').doc(userID);
 
+        usercollection.update({
+            connectedTheaters: firebase.firestore.FieldValue.arrayUnion(theater)
+        })
 
+        
     }
 
     return (
@@ -88,7 +96,7 @@ export function PerformanceSearch() {
                                     <li>{e.zipcode}</li>
                                     <li>{e.theater_uid}</li>
                                     <button onClick={ () => {
-                                        handleSave(e.theater_uid)
+                                        handleSave(e)
                                         
                                     }}>Save Theater</button>
                                 </ul>
