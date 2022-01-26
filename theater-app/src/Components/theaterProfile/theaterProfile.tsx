@@ -38,7 +38,7 @@ export function TheaterProfile() {
     const [addAudition, setAddAudition] = useState<boolean>()
     const [addPerformance, setAddPerformance] = useState<boolean>()
 
-    const user = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
     const uid = user?.uid;
     // console.log("User UID", uid);
 
@@ -79,7 +79,7 @@ export function TheaterProfile() {
 
     return (
         <div>
-            <h1>Welcome, {theaterInfo?.name}</h1>
+            <h2>Welcome, {theaterInfo?.name}</h2>
             <Segment raised>Email: {theaterInfo?.email}</Segment>
             <Segment raised>Zip Code: {theaterInfo?.zipCode}</Segment>
             <Segment raised>Phone Number: {theaterInfo?.phone}</Segment>

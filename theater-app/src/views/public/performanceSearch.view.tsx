@@ -13,8 +13,8 @@ type theaterType = {
     name: string;
     phone?: string;
     website?: string;
-    zipcode?: string; 
-    theater_uid: string; 
+    zipcode?: string;
+    theater_uid: string;
 }
 type performanceType = {
     address:string; 
@@ -28,9 +28,11 @@ type performanceType = {
 
 export function PerformanceSearch() {
     const [search, setSearch] = useState<string>('');
-    const [theatersState, setTheaterState ] = useState<any>('');
-    const user = useContext(AuthContext);
+
+    const [theatersState, setTheaterState] = useState<any>('');
+    const { user } = useContext(AuthContext);
     const [pushTheater, setPushTheater] = useState<theaterType>()
+
     // get the search
     const handleSearch = ({ target: { value } }: any) => {
         setSearch(value)
@@ -55,18 +57,18 @@ export function PerformanceSearch() {
         }
         else {
             // filtered theaters 
+
             return  performances.filter((theater) => JSON.stringify(Object.values(theater)).toLocaleLowerCase().includes(loweredSearch))
             // return  theaters.filter((theater) => JSON.stringify(Object.values(theater)).toLocaleLowerCase().includes(loweredSearch))
+
         }
-       
+
     }
 
     useEffect(() => {
-        theatersToReturn().then(e => { setTheaterState(e);})
+        theatersToReturn().then(e => { setTheaterState(e); })
 
     }, [search]);
-
-    
 
     const handleSave =  async (theater:theaterType  |  string ) => {
 
@@ -91,7 +93,7 @@ export function PerformanceSearch() {
 
     return (
         <div className="performanceView-main-con">
-            <Header /> 
+            <Header />
             <div className="performance-body">
                 <h2>Performance Search</h2>
                 <div >
@@ -101,12 +103,13 @@ export function PerformanceSearch() {
                             <i className="search icon"></i>
                         </div>
                         <div className="results">
-                           
+
                         </div>
                     </div>
-                </div>  
-                
+                </div>
+
                 {
+
                     theatersState != '' ? 
                     theatersState.map((e : performanceType) => {
                         return (

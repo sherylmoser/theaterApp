@@ -23,6 +23,16 @@ body {
   font-family: var(--blockFont);
 }
 
+
+.image.logo-image {
+  width: 1em;
+}
+
+.logo-text {
+  font-family: var(--cursiveFont);
+  font-size: 1.7rem;
+  align-self: end;
+
 .logo{
   margin-top: 1.5em;
 }
