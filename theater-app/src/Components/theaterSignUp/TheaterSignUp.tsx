@@ -26,6 +26,10 @@ export default function TheaterSignUp() {
                     website: website,
                     zipCode: zipCode,
                 })
+                const user = firebase.auth().currentUser;
+			    await user?.updateProfile({
+				    displayName: name
+			  })
             setEmail('');
             setPassword('');
             setName('');
