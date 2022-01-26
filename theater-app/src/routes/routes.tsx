@@ -21,7 +21,7 @@ type ProtectedViewProps = {
 
 export function ProtectedView({ children }: ProtectedViewProps) {
 
-    const user = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const navigate = useNavigate();
     useEffect(() => {
         console.log("Entered useEffect", user);

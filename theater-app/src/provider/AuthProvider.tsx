@@ -5,7 +5,7 @@ import { auth, db } from "../firebase";
 
 export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<firebase.User | null>(null);
-  const [loggedIn, setLoggedIn] = useState()
+  const [loggedIn, setLoggedIn] = useState<boolean>()
 
   useEffect(() => {
 
@@ -18,6 +18,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   async function onLogin(email: string, password: string) {
     const { user } = await auth.signInWithEmailAndPassword(email, password)
     window.localStorage.setItem("loggedIn", "true")
+    setLoggedIn(true)
     const docRef = db.collection("theaters").doc(`${user?.uid}`);
 
     await docRef.get().then((doc) => {
@@ -35,6 +36,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   function onLogout() {
     auth.signOut();
+    setLoggedIn(false)
     window.localStorage.removeItem("TheaterCompany")
     window.localStorage.removeItem("loggedIn")
   }
