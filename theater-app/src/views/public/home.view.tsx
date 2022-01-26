@@ -1,15 +1,11 @@
 
-import { Container, Image } from "semantic-ui-react";
-
-import { useContext, useEffect } from "react"
-// import { AuthContext } from "../../context/AuthContext";
+import { Container } from "semantic-ui-react";
 
 // components   
 import { Header } from '../../Components/header/Header'
 import '../../styles/home.view.css'
 
 export function HomeView() {
-
 
     return (
         <>
