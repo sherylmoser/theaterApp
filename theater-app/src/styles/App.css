@@ -13,7 +13,8 @@
   --hover-boxshadow:  0 7px 15px 5px rgba(0, 0, 0, 0.214);
   --active-boxshadow: 0 3px 7px 2.5px rgba(0, 0, 0, 0.214);
   --transition: .2s ease-in;
-  --animation-delay: .1s ;
+  --animation-delay: .1s;
+  --default-padding: 1.14285714em;
 }
 
 body {
