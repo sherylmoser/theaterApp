@@ -19,9 +19,11 @@ export function Header() {
     //     return snap.docs.map(doc => doc.data())
     // }
 
+
     return (
             <div className="ui secondary pointing menu header">
                 <a href="/">
+
                     <Image src="../logo.png" className="header-logo" />
                 </a>
                 <a href='/performance_search' className="item">
@@ -41,6 +43,7 @@ export function Header() {
                             <Button onClick={() => { console.log('logged out'); auth.signOut(); window.localStorage.removeItem("TheaterCompany") }}>Sign Out</Button>
                         </div>
                         :
+
                         <div className="logged-In-Header">
                             <Button onClick={() => { nav('/login');}}>Login</Button>
                             <Button onClick={() => { nav('/sign_up')}}>Sign up</Button>

@@ -19,6 +19,7 @@ type ProtectedViewProps = {
     children: ReactNode
 }
 
+
 export function ProtectedView({ children }: ProtectedViewProps) {
     const user = useContext(AuthContext);
     const navigate = useNavigate();
@@ -26,6 +27,7 @@ export function ProtectedView({ children }: ProtectedViewProps) {
         navigate('/login')
     }
     return <>{children}</>
+
 }
 
 export function PublicView(props: any) {
@@ -55,8 +57,10 @@ export function MainRoutes() {
                     <Route path='' element={<PerformanceSearch />} />
                 </Route>
                 <Route path="/saved_theaters" >
+
                     <Route path=":id" element={<ProtectedView><SavedTheaterView /></ProtectedView>} />
                     <Route path="" element={<ProtectedView><SavedTheaterView /></ProtectedView>} />
+
                 </Route>
                 <Route path="/profile" element={<ProtectedView><ProfileView /></ProtectedView>} />
 
