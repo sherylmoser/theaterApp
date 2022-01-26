@@ -5,6 +5,7 @@ import { Button } from "semantic-ui-react";
 import { Header } from "../../Components/header/Header";
 import { AuthContext } from "../../context/AuthContext";
 import { db } from '../../firebase'
+import { Loader } from 'semantic-ui-react'
 
 
 type theaterType = {
@@ -89,13 +90,12 @@ export function PerformanceSearch() {
                                     <li>{e.theater_uid}</li>
                                     <button onClick={ () => {
                                         handleSave(e.theater_uid)
-                                        
                                     }}>Save Theater</button>
                                 </ul>
 
                             </div>
                         )
-                    }) : <div>No results </div>
+                    }) : <Loader active inline />
                 }
             </div>
         </div>
