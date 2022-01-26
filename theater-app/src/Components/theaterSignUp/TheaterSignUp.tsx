@@ -33,7 +33,7 @@ export default function TheaterSignUp() {
             setPhoneNumber('');
             setWebsite('');
             window.localStorage.setItem("TheaterCompany", "true")
-            nav('/');
+            nav('/profile');
         } catch (e) {
             alert(e);
         }

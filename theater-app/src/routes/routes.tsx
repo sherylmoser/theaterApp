@@ -1,5 +1,8 @@
 // react imports
 import { Routes, Route, Link, useNavigate } from 'react-router-dom'
+import { ReactNode, useContext } from 'react';
+
+import { AuthContext } from '../context/AuthContext';
 
 // views
 import { LoginView } from '../views/public/login.view'
@@ -9,23 +12,20 @@ import { PerformanceSearch } from '../views/public/performanceSearch.view'
 import { AuditionSearchView } from '../views/public/auditionSearch.view'
 import { SavedTheaterView } from '../views/protected/savedTheaters.view'
 import { HomeView } from '../views/public/home.view'
-
-// Semantic Ui imports 
-import { Header, Menu } from 'semantic-ui-react'
-import { useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';
 import { ProfileView } from '../views/protected/profile.view';
 
 
+type ProtectedViewProps = {
+    children: ReactNode
+}
 
-export function ProtectedView(props: any) {
-    const { stuff } = props;
-
-    return (
-        <div>
-            {stuff}
-        </div>
-    )
+export function ProtectedView({ children }: ProtectedViewProps) {
+    const user = useContext(AuthContext);
+    const navigate = useNavigate();
+    if (!user) {
+        navigate('/login')
+    }
+    return <>{children}</>
 }
 
 export function PublicView(props: any) {
@@ -50,18 +50,15 @@ export function MainRoutes() {
                     <Route path=':id' element={<AuditionSearchView />} />
                     <Route path='' element={<AuditionSearchView />} />
                 </Route>
-                <Route path='performance_search'>
+                <Route path='/performance_search'>
                     <Route path=':id' element={<PerformanceSearch />} />
                     <Route path='' element={<PerformanceSearch />} />
                 </Route>
                 <Route path="/saved_theaters" >
-                    <Route path=":id" element={<SavedTheaterView /> }/>
-                    <Route path="" element={<SavedTheaterView /> } />
+                    <Route path=":id" element={<ProtectedView><SavedTheaterView /></ProtectedView>} />
+                    <Route path="" element={<ProtectedView><SavedTheaterView /></ProtectedView>} />
                 </Route>
-                <Route path="/profile" >
-                    <Route path=":id" element={<ProtectedView> <ProfileView /> </ProtectedView>} />
-                    <Route path="" element={<ProtectedView> <ProfileView /> </ProtectedView>} />
-                </Route>
+                <Route path="/profile" element={<ProtectedView><ProfileView /></ProtectedView>} />
 
                 <Route path="/login" element={<LoginView />} />
                 <Route path="/sign_up" element={<SignupView />} />
