@@ -4,7 +4,8 @@ export function NotFound404() {
     return (
         <div>
             <Header />
-            Page not found
+            <h1>404</h1>
+            <h2>Box 5 has been kept empty</h2>
         </div>
     )
 }
