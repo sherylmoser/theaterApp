@@ -21,12 +21,13 @@ export function Header() {
 
 
     return (
-            <div className="ui secondary pointing menu header">
-                <a href="/">
 
-                    <Image src="../logo.png" className="header-logo" />
-                </a>
-                <a href='/performance_search' className="item">
+        <div className="ui secondary pointing menu header">
+            <a href="/" className="item logo">
+                <Image src="../logo.png" className="header-logo" />
+                <span className="cursive-logo">On Stage</span>
+            </a>
+            <a href='/performance_search' className="item">
                     Theater Search
                 </a>
                 <a href="/audtion_search" className="item">
@@ -51,6 +52,7 @@ export function Header() {
                         }
                 </div>
             </div>
-        
+        </div>
+
     )
 }
