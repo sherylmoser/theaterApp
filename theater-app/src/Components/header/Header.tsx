@@ -27,13 +27,13 @@ export function Header() {
                     <Image src="../logo.png" className="header-logo" />
                 </a>
                 <a href='/performance_search' className="item">
-                    Theater Search
+                    Performances
                 </a>
                 <a href="/audtion_search" className="item">
                     Auditions
                 </a>
                 {
-                    user ? <a href="/saved_theaters" className="item">Saved Theater</a> : null
+                    user ? <a href="/saved_theaters" className="item">Saved Theaters</a> : null
                 }
                 
                 <div className="right menu">
