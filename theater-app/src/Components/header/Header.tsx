@@ -22,6 +22,7 @@ export function Header() {
 
     return (
 
+
         <div className="ui secondary pointing menu header">
             <a href="/" className="item logo">
                 <Image src="../logo.png" className="header-logo" />
@@ -29,12 +30,13 @@ export function Header() {
             </a>
             <a href='/performance_search' className="item">
                     Theater Search
+
                 </a>
                 <a href="/audtion_search" className="item">
                     Auditions
                 </a>
                 {
-                    user ? <a href="/saved_theaters" className="item">Saved Theater</a> : null
+                    user ? <a href="/saved_theaters" className="item">Saved Theaters</a> : null
                 }
                 
                 <div className="right menu">
