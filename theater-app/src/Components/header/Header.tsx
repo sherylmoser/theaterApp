@@ -22,7 +22,7 @@ export function Header() {
                             On Stage
                         </a>
                         <a href='/performance_search' className="item">
-                            Theater Search
+                            Performances
                         </a>
                         <a href="/audtion_search" className="item">
                             Auditions
