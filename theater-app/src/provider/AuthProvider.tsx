@@ -15,11 +15,10 @@ export const AuthProvider: React.FC = ({ children }) => {
     return unsubscribe;
   }, []);
 
-  async function onLogin(email: string, password: string, displayName: string | null | undefined) {
+  async function onLogin(email: string, password: string) {
     try {
       const { user } = await auth.signInWithEmailAndPassword(email, password)
       window.localStorage.setItem("loggedIn", "true")
-      window.localStorage.setItem("displayName", JSON.stringify(user?.displayName))
       setLoggedIn(true)
       const docRef = db.collection("theaters").doc(`${user?.uid}`);
 

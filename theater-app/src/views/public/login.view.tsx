@@ -15,7 +15,7 @@ export function LoginView() {
 
     async function submitHandler(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
-        onLogin?.(email, password, user?.displayName)
+        onLogin?.(email, password)
     }
     useEffect(() => {
         if (user) {

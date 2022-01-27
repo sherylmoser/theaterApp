@@ -41,7 +41,6 @@ export function Header() {
 
                         <div className="right menu">
                             <div className="logged-In-Header">
-                                <span>Welcome, {displayName}</span>
                                 <Button onClick={onLogout}>Sign Out</Button>
                             </div>
 

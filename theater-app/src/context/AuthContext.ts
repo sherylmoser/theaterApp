@@ -4,7 +4,7 @@ import firebase from "firebase/app";
 type AuthContextType = {
     user: firebase.User | null;
     onLogout?: () => void;
-    onLogin?: (email: string, password: string, displayName: string | null | undefined) => void;
+    onLogin?: (email: string, password: string) => void;
     loggedIn?: boolean;
 }
 

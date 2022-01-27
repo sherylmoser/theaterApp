@@ -33,7 +33,7 @@ export default function UserSignUp() {
 			await user?.updateProfile({
 				displayName: firstName
 			})
-			onLogin?.(email, password, firstName)
+			onLogin?.(email, password)
 			setEmail('');
 			setPassword('');
 			setFirstName('');
