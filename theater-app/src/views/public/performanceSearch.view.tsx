@@ -1,11 +1,11 @@
 
 import firebase from "firebase";
 import { useContext, useEffect, useState } from "react";
-import { Header } from "../../Components/header/Header";
 import { AuthContext } from "../../context/AuthContext";
 import { db } from '../../firebase'
 import { Button, Loader } from 'semantic-ui-react'
 import '../../styles/performancesView.css'
+import '../../styles/theaterCard.css'
 
 
 type theaterType = {
@@ -20,7 +20,7 @@ type performanceType = {
     buyTickets: string;
 
     startDate: string;
-    endDate: string; 
+    endDate: string;
 
     image: string;
     theater_uid: string;
@@ -31,8 +31,8 @@ type performanceType = {
 export function PerformanceSearch() {
     const [search, setSearch] = useState<string>('');
 
-    const [theatersState, setTheaterState ] = useState<any>('');
-    const {user} = useContext(AuthContext);
+    const [theatersState, setTheaterState] = useState<any>('');
+    const { user } = useContext(AuthContext);
 
     const handleSearch = ({ target: { value } }: any) => {
         setSearch(value)
@@ -47,15 +47,14 @@ export function PerformanceSearch() {
         // grab the theaters from firebase
         const performances = (await db.collection('upcomingPerformances').get()).docs.map(doc => doc.data())
 
-
-        if(!search){
+        if (!search) {
 
             return performances
         }
         else {
             // filtered theaters 
 
-            return  performances.filter((theater) => JSON.stringify(Object.values(theater)).toLocaleLowerCase().includes(loweredSearch))
+            return performances.filter((theater) => JSON.stringify(Object.values(theater)).toLocaleLowerCase().includes(loweredSearch))
 
         }
 
@@ -64,7 +63,7 @@ export function PerformanceSearch() {
     useEffect(() => {
 
 
-        performancesToReturn().then(e => { setTheaterState(e);})
+        performancesToReturn().then(e => { setTheaterState(e); })
 
 
     }, [search]);
@@ -94,7 +93,7 @@ export function PerformanceSearch() {
     return (
         <div className="performanceView-main-con">
             <div className="performance-body">
-                <h2>Performances Search</h2>
+                <h2 className="performance-title">Performances Search</h2>
                 <div className="search-bar">
                     <div className="ui search">
                         <div className="ui icon input">
@@ -103,31 +102,34 @@ export function PerformanceSearch() {
                         </div>
 
                     </div>
-                </div>  
+                </div>
                 <div className="search-results">
 
-                
-                {
-                    theatersState != '' ? 
-                    theatersState.map((e : performanceType) => {
-                        return (
-                            <div key={e.theater_uid} className="theater-card">
-                                <h2>{e.title}</h2>
-                                <img src={e.image}/>
-                                <h3>{e?.theater_name}</h3>
-                                <p className="date">{e?.startDate} - {e?.endDate}</p>
-                                <p>{e?.address}</p>
-                                <a target="_blank" href={e?.buyTickets}>Buy tickets</a>
-                                <Button onClick={ () => {
-                                    handleSave(e?.theater_uid)
-                                }}>Connect to Theater</Button>
-                            </div>
-                        )
+                    {
+                        theatersState != '' ?
+                            theatersState.map((e: performanceType) => {
+                                return (
+                                    <div key={e.theater_uid} className="theater-card">
+                                        <h2>{e.title}</h2>
+                                        <img src={e.image} />
+                                        <h3>{e?.theater_name}</h3>
+                                        <div className="date-address-div">
+                                            <p className="date">{e?.startDate} - {e?.endDate}</p>
+                                            <p className="address">{e?.address}</p>
+                                        </div>
+                                        <a target="_blank" href={e?.buyTickets}>Buy tickets</a>
+                                        {window.localStorage.getItem("loggedIn") ?
+                                            <Button className="connect-button" onClick={() => {
+                                                handleSave(e?.theater_uid)
+                                            }}>Connect to Theater</Button>
+                                            : null}
+                                    </div>
+                                )
 
 
-                        }) : search.length == 0 ? <Loader active inline /> : <div>No Results Found</div>
+                            }) : search.length == 0 ? <Loader active inline /> : <div>No Results Found</div>
 
-                }
+                    }
                 </div>
             </div>
         </div>
