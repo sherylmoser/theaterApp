@@ -1,9 +1,12 @@
 :root {
   --cursiveFont: 'Pinyon Script', cursive;
   --blockFont: 'Roboto', sans-serif;
-  --red: rgb(191,10,58);
-  --blue: rgb(2,135,217);
-  --white: rgb(242,242,242);
+  --red: rgba(191, 10, 58, 0.733);
+  --redOpaque: rgb(191,10,58);
+  --tealOpaque: rgba(12, 94, 106, 0.356);
+  --teal: rgb(12, 93, 106);
+  --lightGrey: rgb(236, 236, 236);
+  --white: rgb(245, 245, 245);
   --black: rgb(0, 0, 0);
   --smallFont: 1rem;
   --medFont: 1.5rem;

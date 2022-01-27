@@ -1,0 +1,64 @@
+.theater-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  
+    padding: 1rem;
+    margin: 1.8rem;
+  
+    width: 24rem;
+    min-height: 36rem;
+    background-color: var(--lightGrey);
+  
+    border: 1px solid var(--tealOpaque);
+    box-shadow: var(--hover-boxshadow);
+    border-radius: 14px;
+  }
+  .theater-card h2{
+      margin-bottom: 0;
+      text-align: center;
+  }
+  
+  .theater-card > img {
+    max-width: 10rem;
+    max-height: 15rem;
+    margin: 1rem;
+  }
+  
+  .theater-card h3 {
+    align-self: center;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    font-weight: 100;
+    word-wrap:unset;
+    margin: .5rem 0; 
+    text-align: center;
+  }
+  .theater-card .date-address-div {
+    border-top: 3px solid var(--red);
+    border-bottom: 3px solid var(--red);
+    width: 90%;
+    border-radius: 5%;
+  }
+  .theater-card p {
+    text-align: center;
+    margin: .5rem;
+  }
+  .theater-card .date {
+    align-self: center;
+    font-size: clamp(1.23rem, 2vw, 1.25rem);
+    font-weight: 400;
+  }
+  .theater-card Button {
+    height: 4rem;
+  }
+  .theater-card a {
+    font-size: 1.5rem;
+    color: var(--red)
+  }
+  .theater-card .button.connect-button {
+      height: 2.5em;
+      background-color: var(--redOpaque);
+      color: var(--lightGrey);
+  }
+
