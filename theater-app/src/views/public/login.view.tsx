@@ -15,7 +15,7 @@ export function LoginView() {
 
     async function submitHandler(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
-        onLogin?.(email, password)
+        onLogin?.(email, password, user?.displayName)
     }
     useEffect(() => {
         if (user) {
@@ -32,7 +32,6 @@ export function LoginView() {
 
     return (
         <div>
-            <Header />
             <div className="pj-form">
                 <span>Login</span>
                 <form onSubmit={submitHandler}>

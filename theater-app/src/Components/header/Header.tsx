@@ -10,15 +10,20 @@ import { ProtectedView } from "../../routes/routes";
 export function Header() {
     const { user, onLogout } = useContext(AuthContext)
     const nav = useNavigate();
-    const loggedIn = window.localStorage.getItem("loggedIn")
+    const loggedIn = window.localStorage.getItem("loggedIn");
+    const displayNameJSON = window.localStorage.getItem("displayName");
+    let displayName
+    if (displayNameJSON) {
+        displayName = JSON.parse(displayNameJSON)
+    }
 
     return (
         <div>
             {
                 loggedIn ?
                     <div className="ui secondary pointing menu header">
-                        <Image src="../logo.png" className="logo-image" />
                         <a href="/" className="logo-text item">
+                            <Image src="../logo.png" className="logo-image" />
                             On Stage
                         </a>
                         <a href='/performance_search' className="item">
@@ -32,7 +37,7 @@ export function Header() {
 
                         <div className="right menu">
                             <div className="logged-In-Header">
-                                <span>Welcome, {user?.displayName}</span>
+                                <span>Welcome, {displayName}</span>
                                 <Button onClick={onLogout}>Sign Out</Button>
                             </div>
 

@@ -15,37 +15,32 @@ export const AuthProvider: React.FC = ({ children }) => {
     return unsubscribe;
   }, []);
 
-  async function onLogin(email: string, password: string) {
+  async function onLogin(email: string, password: string, displayName: string | null | undefined) {
     try {
       const { user } = await auth.signInWithEmailAndPassword(email, password)
       window.localStorage.setItem("loggedIn", "true")
+      window.localStorage.setItem("displayName", JSON.stringify(user?.displayName))
       setLoggedIn(true)
       const docRef = db.collection("theaters").doc(`${user?.uid}`);
-    
 
-    await docRef.get().then((doc) => {
-      if (doc.exists) {
-        window.localStorage.setItem("TheaterCompany", "true")
-      } 
-      // else {
-      //   // doc.data() will be undefined in this case
-      //   console.log("No such document!");
-      // }
-    })
-    // .catch((error) => {
-    //   console.log("Error getting document:", error);
-    // });
-  } 
-  catch(e) {
-    alert(e)
-  }
+
+      await docRef.get().then((doc) => {
+        if (doc.exists) {
+          window.localStorage.setItem("TheaterCompany", "true")
+        }
+      })
+    }
+    catch (e) {
+      alert(e)
+    }
   }
 
   function onLogout() {
     auth.signOut();
-    setLoggedIn(false)
-    window.localStorage.removeItem("TheaterCompany")
-    window.localStorage.removeItem("loggedIn")
+    setLoggedIn(false);
+    window.localStorage.removeItem("TheaterCompany");
+    window.localStorage.removeItem("loggedIn");
+    window.localStorage.removeItem("displayName");
   }
 
   return <AuthContext.Provider value={{ user, loggedIn, onLogin, onLogout }}>{children}</AuthContext.Provider>;

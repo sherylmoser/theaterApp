@@ -8,7 +8,7 @@ import UserSignUp from '../../Components/userSignUp/UserSignUp';
 import '../../styles/signup.view.css';
 
 export default function SignupView() {
-	const [ userSignUp, setUserSignUp ] = useState<boolean>(true);
+	const [userSignUp, setUserSignUp] = useState<boolean>(true);
 
 	function signUpHandler() {
 		setUserSignUp(!userSignUp);
@@ -16,7 +16,6 @@ export default function SignupView() {
 
 	return (
 		<div>
-			<Header />
 			<div className="pj-form">
 				<div>
 					<button className="pj-toggle" disabled={userSignUp} onClick={signUpHandler}>

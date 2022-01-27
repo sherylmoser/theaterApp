@@ -34,23 +34,22 @@ export function SavedTheaterView() {
 
     }, [user, setSavedTheaters])
 
-   const handleDisconnect = async ( theater: theaterType) => {
-       const userID = user?.uid; 
-       const usercollection = db.collection('users').doc(userID)
+    const handleDisconnect = async (theater: theaterType) => {
+        const userID = user?.uid;
+        const usercollection = db.collection('users').doc(userID)
 
         await usercollection.update({
             connectedTheaters: firebase.firestore.FieldValue.arrayRemove(theater)
         })
-        const updatedTheaters = savedTheaters.filter((theaterObj : theaterType)  => theaterObj.name != theater.name)
+        const updatedTheaters = savedTheaters.filter((theaterObj: theaterType) => theaterObj.name != theater.name)
 
         // console.log(updatedTheaters)
         setSavedTheaters(updatedTheaters)
 
-   }
+    }
 
     return (
         <>
-            <Header />
 
             Saved Theaters
 
