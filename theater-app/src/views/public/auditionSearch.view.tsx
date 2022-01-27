@@ -24,7 +24,7 @@ export function AuditionSearchView() {
         callbacks: string;
         dates: string;
         image: string;
-        signUpLink: string;
+        signUp: string;
         theater_name: string;
         theater_uid: string;
         title: string;
@@ -35,17 +35,7 @@ export function AuditionSearchView() {
     const [search, setSearch] = useState<string>('');
     const [theatersState, setTheaterState] = useState<any>('');
 
-    type auditionType = {
-        address: string;
-        callbacks: string;
-        dates: string; 
-        image: string;
-        signUp: string;
-        theater_name: string;
-        theater_uid: string; 
-        title: string; 
-    }
-
+    
     // get the search
     const handleSearch = ({ target: { value } }: any) => {
         setSearch(value)

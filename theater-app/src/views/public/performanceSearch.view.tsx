@@ -32,7 +32,7 @@ export function PerformanceSearch() {
     const [search, setSearch] = useState<string>('');
 
     const [theatersState, setTheaterState ] = useState<any>('');
-    const user = useContext(AuthContext);
+    const {user} = useContext(AuthContext);
 
     const handleSearch = ({ target: { value } }: any) => {
         setSearch(value)
@@ -72,6 +72,7 @@ export function PerformanceSearch() {
     const handleSave = async (theater: theaterType | string) => {
 
         const userID = user?.uid;
+
         let newTheater;
 
         if (typeof theater == 'string') {
