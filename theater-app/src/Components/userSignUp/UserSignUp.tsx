@@ -26,6 +26,7 @@ export default function UserSignUp() {
 					firstName: firstName,
 					lastName: lastName,
 					zipCode: zipCode,
+					email: email,
 					connectedTheaters: []
 				})
 			const user = firebase.auth().currentUser;
