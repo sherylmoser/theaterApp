@@ -22,18 +22,20 @@ export function Header() {
             {
                 loggedIn ?
                     <div className="ui secondary pointing menu header">
-                        <a href="/" className="logo-text item">
-                            <Image src="../logo.png" className="logo-image" />
-                            On Stage
-                        </a>
-                        <a href='/performance_search' className="item">
-                            Performances
-                        </a>
-                        <a href="/audtion_search" className="item">
-                            Auditions
-                        </a>
-                        <a href="/saved_theaters" className="item">Saved Theater</a>
-                        <a href="/profile" className="item">Profile</a>
+                        <div className="left-menu">
+                            <a href="/" className="logo item">
+                                <Image src="../logo.png" className="logo-image" />
+                                On Stage
+                            </a>
+                            <a href='/performance_search' className="item">
+                                Performances
+                            </a>
+                            <a href="/audtion_search" className="item">
+                                Auditions
+                            </a>
+                            <a href="/saved_theaters" className="item">Saved Theater</a>
+                            <a href="/profile" className="item">Profile</a>
+                        </div>
 
                         <div className="right menu">
                             <div className="logged-In-Header">
@@ -45,17 +47,18 @@ export function Header() {
                     </div>
                     :
                     <div className="ui secondary pointing menu header">
-                        <Image src="../logo.png" className="logo-image" />
-                        <a href="/" className="logo-text item">
-                            On Stage
-                        </a>
-                        <a href='/performance_search' className="item">
-                            Theater Search
-                        </a>
-                        <a href="/audtion_search" className="item">
-                            Auditions
-                        </a>
-
+                        <div className="left-menu">
+                            <a href="/" className="logo item">
+                                <Image src="../logo.png" className="logo-image" />
+                                On Stage
+                            </a>
+                            <a href='/performance_search' className="item">
+                                Theater Search
+                            </a>
+                            <a href="/audtion_search" className="item">
+                                Auditions
+                            </a>
+                        </div>
                         <div className="right menu">
 
                             <div className="logged-In-Header">
