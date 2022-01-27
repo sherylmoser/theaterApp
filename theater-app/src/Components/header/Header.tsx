@@ -33,7 +33,9 @@ export function Header() {
                             <a href="/audtion_search" className="item">
                                 Auditions
                             </a>
-                            <a href="/saved_theaters" className="item">Saved Theater</a>
+                            {!window.localStorage.getItem("TheaterCompany") ?
+                                <a href="/saved_theaters" className="item">Saved Theater</a>
+                                : null}
                             <a href="/profile" className="item">Profile</a>
                         </div>
 
