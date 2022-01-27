@@ -40,11 +40,14 @@ export function UserProfile() {
     function handleEdit() {
         setEdit(!edit)
     }
-
+    // Works just need to have header rerender when a change is made
     async function handleSubmit() {
         try {
             if (userInfo?.email && userInfo?.email != user?.email) {
                 await auth.currentUser?.updateEmail(userInfo?.email);
+                await auth.currentUser?.updateProfile({
+                    displayName: userInfo.firstName
+                })
                 await docRef.set({
                     firstName: userInfo?.firstName,
                     lastName: userInfo?.lastName,
@@ -52,6 +55,9 @@ export function UserProfile() {
                     email: userInfo?.email
                 })
              } else {
+                await auth.currentUser?.updateProfile({
+                    displayName: userInfo?.firstName
+                })
                 await docRef.set({
                     firstName: userInfo?.firstName,
                     lastName: userInfo?.lastName,
@@ -63,6 +69,7 @@ export function UserProfile() {
          {
             alert(e.code)
         }
+        console.log(user?.displayName)
          handleEdit()
     }
 
