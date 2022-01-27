@@ -5,7 +5,6 @@
     min-height: var(--full-height-minus-header);
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 input {
     border: none

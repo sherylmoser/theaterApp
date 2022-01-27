@@ -88,6 +88,7 @@ export function UserProfile() {
         <div>
             {edit ?
                 <div className="form-container">
+                    <h2>Welcome, {user?.displayName}</h2>
                     <Button onClick={handleEdit} className={edit ? 'padding' : ''}>Back To Profile</Button>
                     <Form onSubmit={handleSubmit}>
                         <Form.Field>
@@ -112,6 +113,7 @@ export function UserProfile() {
                 </div>
                 :
                 <div className="form-container">
+                    <h2>Welcome, {user?.displayName}</h2>
                     <Button onClick={handleEdit}>Edit Profile</Button>
                     <Segment>First Name: {userInfo?.firstName}</Segment>
                     <Segment>Last Name: {userInfo?.lastName}</Segment>
