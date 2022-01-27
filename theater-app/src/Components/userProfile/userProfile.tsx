@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Form, Icon, Input, Label, Segment } from "semantic-ui-react";
 import { AuthContext } from "../../context/AuthContext"
 import { auth, db } from "../../firebase";
+import './userProfile.css'
 
 type UserType = {
     firstName?: string;
@@ -92,10 +93,9 @@ export function UserProfile() {
 
     return (
         <div>
-            <h2 className="profile-header">Welcome, {userInfo?.firstName}</h2>
             {edit ?
-                <div>
-                    <Button onClick={handleEdit}>Profile</Button>
+                <div className="form-container">
+                    <Button onClick={handleEdit} className={edit ? 'padding' : ''}>Back To Profile</Button>
                     <Form onSubmit={handleSubmit}>
                         <Form.Field>
                             <Label pointing="below">First Name</Label>
@@ -114,11 +114,11 @@ export function UserProfile() {
                             <Label pointing="below">Zip Code</Label>
                             <input type='text' name="zipCode" onChange={zipCodeHandler} value={userInfo?.zipCode} />
                         </Form.Field>
-                        <input type="submit" value="Add Changes" />
+                        <input type="submit" value="save" />
                     </Form>
                 </div>
                 :
-                <div>
+                <div className="form-container">
                     <Button onClick={handleEdit}>Edit Profile</Button>
                     <Segment>First Name: {userInfo?.firstName}</Segment>
                     <Segment>Last Name: {userInfo?.lastName}</Segment>
