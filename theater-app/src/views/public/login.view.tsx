@@ -5,8 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import '../../styles/signup.view.css';
 
-
-
 export function LoginView() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState<string | ''>('');
@@ -31,7 +29,6 @@ export function LoginView() {
     function passwordHandler(e: ChangeEvent<HTMLInputElement>) {
         setPassword(e.target.value);
     }
-
 
     return (
         <div>

@@ -16,22 +16,29 @@ export const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   async function onLogin(email: string, password: string) {
-    const { user } = await auth.signInWithEmailAndPassword(email, password)
-    window.localStorage.setItem("loggedIn", "true")
-    setLoggedIn(true)
-    const docRef = db.collection("theaters").doc(`${user?.uid}`);
+    try {
+      const { user } = await auth.signInWithEmailAndPassword(email, password)
+      window.localStorage.setItem("loggedIn", "true")
+      setLoggedIn(true)
+      const docRef = db.collection("theaters").doc(`${user?.uid}`);
+    
 
     await docRef.get().then((doc) => {
-      console.log("DOC", doc)
       if (doc.exists) {
         window.localStorage.setItem("TheaterCompany", "true")
-      } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-      }
-    }).catch((error) => {
-      console.log("Error getting document:", error);
-    });
+      } 
+      // else {
+      //   // doc.data() will be undefined in this case
+      //   console.log("No such document!");
+      // }
+    })
+    // .catch((error) => {
+    //   console.log("Error getting document:", error);
+    // });
+  } 
+  catch(e) {
+    alert(e)
+  }
   }
 
   function onLogout() {
