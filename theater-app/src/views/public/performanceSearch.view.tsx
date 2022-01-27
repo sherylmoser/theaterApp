@@ -120,9 +120,10 @@ export function PerformanceSearch() {
                                         <a target="_blank" href={e?.buyTickets}>Buy tickets</a>
                                         {window.localStorage.getItem("loggedIn") ?
                                             <Button className="connect-button" onClick={() => {
-                                                handleSave(e?.theater_uid)
-                                            }}>Connect to Theater</Button>
+                                                handleSave(e.theater_uid)
+                                            }}>Save Theater</Button>
                                             : null}
+
                                     </div>
                                 )
 
