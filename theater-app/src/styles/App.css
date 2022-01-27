@@ -25,15 +25,6 @@ body {
   font-family: var(--blockFont);
 }
 
-.image.logo-image {
-  width: 1em;
-}
-
-.logo-text {
-  font-family: var(--cursiveFont);
-  font-size: 1.7rem;
-}
-
 .container.home-logo {
   display: flex;
   flex-direction: column;

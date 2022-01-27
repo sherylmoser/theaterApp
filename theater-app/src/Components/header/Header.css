@@ -9,3 +9,18 @@
     padding: 0 1.14285714em;
     text-transform: capitalize;
 }
+.image.logo-image {
+    width: 1em;
+    margin-right: .5em;
+}
+.logo-text {
+    font-family: var(--cursiveFont);
+    font-size: 1.7rem;
+}
+.ui.secondary.pointing.menu .item {
+   margin-bottom: 1rem;
+   transition: border-bottom .5s ease-in-out;
+}
+.ui.secondary.pointing.menu .item:hover {
+    border-bottom: 2px solid var(--red);
+}

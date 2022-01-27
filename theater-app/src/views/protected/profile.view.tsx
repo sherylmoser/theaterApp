@@ -6,7 +6,6 @@ export function ProfileView() {
     const theaterUser = window.localStorage.getItem("TheaterCompany")
     return (
         <>
-            <Header />
             {theaterUser ? <TheaterProfile /> : <UserProfile />}
         </>
     )
