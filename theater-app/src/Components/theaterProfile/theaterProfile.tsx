@@ -3,6 +3,7 @@ import { Button, Form, Icon, Segment } from "semantic-ui-react";
 import { AuthContext } from "../../context/AuthContext"
 import { db } from "../../firebase";
 import firebase from "firebase";
+import './theaterProfile.css'
 
 type AuditionsType = {
     title?: string;
@@ -202,7 +203,7 @@ export function TheaterProfile() {
         setPerformanceWebsite(e.target.value)
     }
     return (
-        <div>
+        <div className="theater-form-container">
             <h2>Welcome, {theaterInfo?.name}</h2>
             <Segment raised>Email: {theaterInfo?.email}</Segment>
             <Segment raised>Zip Code: {theaterInfo?.zipCode}</Segment>
@@ -214,17 +215,17 @@ export function TheaterProfile() {
                         <label>Title</label>
                         <input required onChange={auditionTitleHandler} value={auditionTitle} type="text" placeholder="Title" />
                     </Form.Field>
-                    <Form.Field>
+                    <Form.Field className="dates">
                         <label>Audition Start Date</label>
                         <input required onChange={auditionStartDateHandler} type="date" value={auditionStartDate}/>
-                    </Form.Field>
-                    <Form.Field>
                         <label>Audition End Date</label>
                         <input required onChange={auditionEndDateHandler} type="date" value={auditionEndDate}/>
-                    </Form.Field>
-                    <Form.Field>
                         <label>Callback Date</label>
                         <input required onChange={auditionCallbackDateHandler} type="date" value={auditionCallbackDate} />
+                    </Form.Field>
+                    <Form.Field>
+                    </Form.Field>
+                    <Form.Field>
                     </Form.Field>
                     <Form.Field>
                         <label>Address</label>
