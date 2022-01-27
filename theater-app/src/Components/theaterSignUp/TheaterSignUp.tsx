@@ -33,7 +33,7 @@ export default function TheaterSignUp() {
             await user?.updateProfile({
                 displayName: name
             })
-            onLogin?.(email, password, name)
+            onLogin?.(email, password)
             setEmail('');
             setPassword('');
             setName('');
