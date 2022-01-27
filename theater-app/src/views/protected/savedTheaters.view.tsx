@@ -21,7 +21,7 @@ export function SavedTheaterView() {
     // user
     const { user } = useContext(AuthContext);
     const [savedTheaters, setSavedTheaters] = useState<any>([])
-    const [reloaded, setRealoaded] = useState<number>(0)
+    const [reloaded, setReloaded] = useState<number>(0)
 
 
 
