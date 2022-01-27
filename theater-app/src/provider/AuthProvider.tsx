@@ -39,7 +39,6 @@ export const AuthProvider: React.FC = ({ children }) => {
     setLoggedIn(false);
     window.localStorage.removeItem("TheaterCompany");
     window.localStorage.removeItem("loggedIn");
-    window.localStorage.removeItem("displayName");
   }
 
   return <AuthContext.Provider value={{ user, loggedIn, onLogin, onLogout }}>{children}</AuthContext.Provider>;
