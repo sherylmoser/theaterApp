@@ -1,4 +1,5 @@
 import { ChangeEvent, useContext, useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom";
 import { Button, Form, Icon, Input, Label, Segment } from "semantic-ui-react";
 import { AuthContext } from "../../context/AuthContext"
 import { auth, db } from "../../firebase";
@@ -18,6 +19,7 @@ export function UserProfile() {
     const [edit, setEdit] = useState<boolean>()
     const { user } = useContext(AuthContext)
     const uid = user?.uid;
+    const nav = useNavigate()
 
     let userData: UserType | undefined;
     let docRef = db.collection("users").doc(uid)
@@ -69,7 +71,9 @@ export function UserProfile() {
          {
             alert(e.code)
         }
-        console.log(user?.displayName)
+        if(user?.displayName == userInfo?.firstName) {
+            nav('/profile')
+        }
          handleEdit()
     }
 
