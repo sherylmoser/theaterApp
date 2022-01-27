@@ -1,0 +1,39 @@
+
+.form-container {
+    padding: var(--padding-large);
+    max-width: 800px;
+    margin: 0 auto;
+    min-height: var(--full-height-minus-header);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+input {
+    border: none
+}
+input[type='submit'] {
+    text-transform: uppercase;
+    align-self: center;
+    padding: 1em 2em;
+    cursor: pointer;
+    background-color: var(--red);
+    border-radius: var(--border-radius);
+    color: var(--white);
+    transition: all var(--transition);
+    display: block;
+    margin: 0 auto;
+}
+input[type='submit']:hover,
+input[type='submit']:focus {
+    box-shadow: var(--hover-boxshadow);
+    transform: translateY(-2px);
+}
+input[type='submit']:active {
+    box-shadow: var(--active-boxshadow);
+}
+input[type='submit']:focus {
+    outline: none;
+}
+.padding.padding {
+    margin-bottom: 1em;
+}
