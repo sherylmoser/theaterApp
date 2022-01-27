@@ -2,8 +2,11 @@ import { ChangeEvent, useContext, useState } from 'react';
 import { auth } from '../../firebase';
 import firebase from 'firebase';
 import { useNavigate, useRoutes } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 
 export default function TheaterSignUp() {
+
+    const { onLogin } = useContext(AuthContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState<string | ''>('');
     const [name, setName] = useState<string | ''>('')
@@ -26,10 +29,11 @@ export default function TheaterSignUp() {
                     website: website,
                     zipCode: zipCode,
                 })
-                const user = firebase.auth().currentUser;
-			    await user?.updateProfile({
-				    displayName: name
-			  })
+            const user = firebase.auth().currentUser;
+            await user?.updateProfile({
+                displayName: name
+            })
+            onLogin?.(email, password)
             setEmail('');
             setPassword('');
             setName('');

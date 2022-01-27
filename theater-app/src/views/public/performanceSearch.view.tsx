@@ -12,28 +12,32 @@ type theaterType = {
     name: string;
     phone?: string;
     website?: string;
-    zipcode?: string; 
-    theater_uid: string; 
+    zipcode?: string;
+    theater_uid: string;
 }
 type performanceType = {
-    address:string; 
+    address: string;
     buyTickets: string;
+
     startDate: string;
     endDate: string; 
+
     image: string;
     theater_uid: string;
-    title: string; 
-    theater_name: string; 
+    title: string;
+    theater_name: string;
 }
 
 export function PerformanceSearch() {
     const [search, setSearch] = useState<string>('');
+
     const [theatersState, setTheaterState ] = useState<any>('');
     const user = useContext(AuthContext);
 
     const handleSearch = ({ target: { value } }: any) => {
         setSearch(value)
     }
+
 
     //  async container to get performances
     let performancesToReturn = async () => {
@@ -43,33 +47,37 @@ export function PerformanceSearch() {
         // grab the theaters from firebase
         const performances = (await db.collection('upcomingPerformances').get()).docs.map(doc => doc.data())
 
+
         if(!search){
+
             return performances
         }
         else {
             // filtered theaters 
+
             return  performances.filter((theater) => JSON.stringify(Object.values(theater)).toLocaleLowerCase().includes(loweredSearch))
+
         }
-       
+
     }
 
     useEffect(() => {
 
+
         performancesToReturn().then(e => { setTheaterState(e);})
+
 
     }, [search]);
 
-    
+    const handleSave = async (theater: theaterType | string) => {
 
-    const handleSave =  async (theater:theaterType  |  string ) => {
+        const userID = user?.uid;
+        let newTheater;
 
-        const userID = user?.uid; 
-        let newTheater; 
-        
-        if(typeof theater == 'string'){
+        if (typeof theater == 'string') {
             // get the data from server
             newTheater = await db.collection('theaters').doc(theater).get()
-            .then(doc => doc.data())
+                .then(doc => doc.data())
         } else {
             newTheater = theater
         }
@@ -84,7 +92,6 @@ export function PerformanceSearch() {
 
     return (
         <div className="performanceView-main-con">
-            <Header /> 
             <div className="performance-body">
                 <h2>Performances Search</h2>
                 <div className="search-bar">
@@ -93,6 +100,7 @@ export function PerformanceSearch() {
                             <input className="prompt" type="text" onChange={handleSearch} placeholder="Theaters..." />
                             <i className="search icon"></i>
                         </div>
+
                     </div>
                 </div>  
                 <div className="search-results">
@@ -115,7 +123,8 @@ export function PerformanceSearch() {
                             </div>
                         )
 
-                    }) : search.length == 0 ? <Loader active inline /> : <div>No Results Found</div>
+
+                        }) : search.length == 0 ? <Loader active inline /> : <div>No Results Found</div>
 
                 }
                 </div>

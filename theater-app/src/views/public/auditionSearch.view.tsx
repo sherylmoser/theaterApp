@@ -8,9 +8,32 @@ import { Loader } from 'semantic-ui-react'
 
 
 export function AuditionSearchView() {
-    
+
+
+
+
+    type theaterType = {
+        name: string;
+        phone?: string;
+        website?: string;
+        zipcode?: string;
+        theater_uid: string;
+    }
+    type auditionType = {
+        address: string;
+        callbacks: string;
+        dates: string;
+        image: string;
+        signUpLink: string;
+        theater_name: string;
+        theater_uid: string;
+        title: string;
+    }
+
+
+
     const [search, setSearch] = useState<string>('');
-    const [theatersState, setTheaterState ] = useState<any>('');
+    const [theatersState, setTheaterState] = useState<any>('');
 
     type auditionType = {
         address: string;
@@ -34,26 +57,25 @@ export function AuditionSearchView() {
 
         // grab the theaters from firebase
         const auditions = (await db.collection('upcomingAuditions').get()).docs.map(doc => doc.data())
-        if(!search){
+        if (!search) {
             // all of the theaters
             return auditions
         }
         else {
             // filtered auditions
-            return  auditions.filter((audition) => JSON.stringify(Object.values(audition)).toLocaleLowerCase().includes(loweredSearch))
+            return auditions.filter((audition) => JSON.stringify(Object.values(audition)).toLocaleLowerCase().includes(loweredSearch))
         }
-       
+
     }
 
     useEffect(() => {
 
-        theatersToReturn().then(e => { setTheaterState(e);})
-        
+        theatersToReturn().then(e => { setTheaterState(e); })
+
     }, [search]);
 
     return (
         <div className="performanceView-main-con">
-            <Header /> 
             <div className="performance-body">
                 <h2>Audition Search</h2>
                 <div className="search-bar">
@@ -63,6 +85,7 @@ export function AuditionSearchView() {
                             <i className="search icon"></i>
                         </div>
                     </div>
+
                 </div>  
                 <div className="search-results">
                     {
@@ -86,8 +109,9 @@ export function AuditionSearchView() {
                         }) : search.length == 0 ? <Loader active inline /> : <div>No Results Found</div>
                     }
                 </div>
+
             </div>
         </div>
     )
 }
-  
+

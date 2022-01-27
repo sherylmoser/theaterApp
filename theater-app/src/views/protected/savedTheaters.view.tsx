@@ -11,53 +11,52 @@ type theaterType = {
     name: string;
     phone?: string;
     website?: string;
-    zipcode?: string; 
-    theater_uid: string; 
+    zipcode?: string;
+    theater_uid: string;
 }
 export function SavedTheaterView() {
     // user
-    const user = useContext(AuthContext);
-    const [savedTheaters, setSavedTheaters ] = useState<any>([])
+    const { user } = useContext(AuthContext);
+    const [savedTheaters, setSavedTheaters] = useState<any>([])
     const [reloaded, setRealoaded] = useState<number>(0)
 
-   
+
 
     // set the data to saved movie state
-   useEffect(() => {
+    useEffect(() => {
         async function getData() {
             const savedTheaters = await db.collection('users').doc(user?.uid).get()
-            .then(doc => doc.data())
+                .then(doc => doc.data())
             setSavedTheaters(savedTheaters?.connectedTheaters)
         }
         getData();
 
-        
-   }, [user, setSavedTheaters])
 
-   const handleDisconnect = async ( theater: theaterType) => {
-       const userID = user?.uid; 
-       const usercollection = db.collection('users').doc(userID)
+    }, [user, setSavedTheaters])
+
+    const handleDisconnect = async (theater: theaterType) => {
+        const userID = user?.uid;
+        const usercollection = db.collection('users').doc(userID)
 
         await usercollection.update({
             connectedTheaters: firebase.firestore.FieldValue.arrayRemove(theater)
         })
-        const updatedTheaters = savedTheaters.filter((theaterObj : theaterType)  => theaterObj.name != theater.name)
+        const updatedTheaters = savedTheaters.filter((theaterObj: theaterType) => theaterObj.name != theater.name)
 
         // console.log(updatedTheaters)
         setSavedTheaters(updatedTheaters)
 
-   }
+    }
 
     return (
         <>
-            <Header />
 
             Saved Theaters
 
             <div>
-                { savedTheaters  ? 
+                {savedTheaters ?
                     savedTheaters?.map((theater: theaterType) => {
-                        
+
                         return (
                             <div className="theater-box">
                                 <h1>{theater?.name}</h1>

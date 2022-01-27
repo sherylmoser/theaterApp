@@ -1,6 +1,6 @@
 // react imports
-import { Routes, Route, Link, useNavigate } from 'react-router-dom'
-import { ReactNode, useContext } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom'
+import { ReactNode, useContext, useEffect } from 'react';
 
 import { AuthContext } from '../context/AuthContext';
 
@@ -19,15 +19,20 @@ type ProtectedViewProps = {
     children: ReactNode
 }
 
-
 export function ProtectedView({ children }: ProtectedViewProps) {
-    const user = useContext(AuthContext);
-    const navigate = useNavigate();
-    if (!user) {
-        navigate('/login')
-    }
-    return <>{children}</>
 
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
+    useEffect(() => {
+        console.log("Entered useEffect", user);
+        const loggedInUser = window.localStorage.getItem('loggedIn')
+        if (!loggedInUser) {
+            console.log("USER", user)
+
+            navigate('/login')
+        }
+    }, [user])
+    return <>{children}</>
 }
 
 export function PublicView(props: any) {

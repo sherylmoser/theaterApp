@@ -8,6 +8,7 @@
   --smallFont: 1rem;
   --medFont: 1.5rem;
   --largeFont: 2.5rem;
+  --padding-large: 2rem;
   --padding: 1em;
   --margin: 1em;
   --border-radius: 2em;
@@ -17,24 +18,11 @@
   --animation-delay: .1s;
   --home-delay: .5s;
   --default-padding: 1.14285714em;
+  --full-height-minus-header: calc(100vh - 67px)
 }
 
 body {
   font-family: var(--blockFont);
-}
-
-.logo{
-  margin-top: 1.5em;
-}
-
-.image.header-logo {
-  width: 2rem;
-  margin-right: var(--margin);
-}
-
-.cursive-logo {
-  font-family: var(--cursiveFont);
-  font-size: 2rem;
 }
 
 .container.home-logo {

@@ -1,6 +1,11 @@
 .ui.secondary.pointing.menu {
 	align-items: center;
     padding: 0 1.14285714em;
+    /* height: 4em; */
+}
+.left-menu {
+    display: flex;
+    padding-bottom: .5em;
 }
 .ui.secondary.pointing.menu button:not(:last-child) {
     margin-right: 1.14285714em;
@@ -8,4 +13,14 @@
 .ui.secondary.pointing.menu span {
     padding: 0 1.14285714em;
     text-transform: capitalize;
+}
+.image.logo-image {
+    width: 1.5em;
+    margin-right: .5em;
+}
+.ui.secondary.pointing.menu .item {
+   transition: border-bottom .5s ease-in-out;
+}
+.ui.secondary.pointing.menu .item:hover {
+    border-bottom: 2px solid var(--red);
 }
