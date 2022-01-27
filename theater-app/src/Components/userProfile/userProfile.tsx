@@ -1,4 +1,5 @@
 import { ChangeEvent, useContext, useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom";
 import { Button, Form, Icon, Input, Label, Segment } from "semantic-ui-react";
 import { AuthContext } from "../../context/AuthContext"
 import { auth, db } from "../../firebase";
@@ -18,6 +19,7 @@ export function UserProfile() {
     const [edit, setEdit] = useState<boolean>()
     const { user } = useContext(AuthContext)
     const uid = user?.uid;
+    const nav = useNavigate()
 
     let userData: UserType | undefined;
     let docRef = db.collection("users").doc(uid)
@@ -40,11 +42,14 @@ export function UserProfile() {
     function handleEdit() {
         setEdit(!edit)
     }
-
+    // Works just need to have header rerender when a change is made
     async function handleSubmit() {
         try {
             if (userInfo?.email && userInfo?.email != user?.email) {
                 await auth.currentUser?.updateEmail(userInfo?.email);
+                await auth.currentUser?.updateProfile({
+                    displayName: userInfo.firstName
+                })
                 await docRef.set({
                     firstName: userInfo?.firstName,
                     lastName: userInfo?.lastName,
@@ -52,6 +57,9 @@ export function UserProfile() {
                     email: userInfo?.email
                 })
              } else {
+                await auth.currentUser?.updateProfile({
+                    displayName: userInfo?.firstName
+                })
                 await docRef.set({
                     firstName: userInfo?.firstName,
                     lastName: userInfo?.lastName,
@@ -62,6 +70,9 @@ export function UserProfile() {
         } catch(e:any)
          {
             alert(e.code)
+        }
+        if(user?.displayName == userInfo?.firstName) {
+            nav('/profile')
         }
          handleEdit()
     }
