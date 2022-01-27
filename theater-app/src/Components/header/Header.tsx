@@ -13,12 +13,6 @@ export function Header() {
     const user = useContext(AuthContext);
     const nav = useNavigate();
 
-    // const theaters = async () => {
-    //     const snap = await db.collection('theaters').get()
-    //     console.log(snap.docs.map(doc => doc.data()))
-    //     return snap.docs.map(doc => doc.data())
-    // }
-
 
     return (
 
@@ -29,7 +23,7 @@ export function Header() {
                 <span className="cursive-logo">On Stage</span>
             </a>
             <a href='/performance_search' className="item">
-                    Theater Search
+                    Performances
 
                 </a>
                 <a href="/audtion_search" className="item">
@@ -54,7 +48,5 @@ export function Header() {
                         }
                 </div>
             </div>
-        
-
     )
 }
