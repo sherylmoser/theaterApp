@@ -5,6 +5,7 @@ import { AuthContext } from "../../context/AuthContext"
 import { auth, db } from "../../firebase";
 import './userProfile.css'
 
+
 type UserType = {
     firstName?: string;
     lastName?: string;
@@ -13,18 +14,14 @@ type UserType = {
     user_uid?: string;
     connectedTheaters?: string[];
 }
-
 export function UserProfile() {
-
     const [userInfo, setUserInfo] = useState<UserType>()
     const [edit, setEdit] = useState<boolean>()
     const { user } = useContext(AuthContext)
     const uid = user?.uid;
     const nav = useNavigate()
-
     let userData: UserType | undefined;
     let docRef = db.collection("users").doc(uid)
-
     useEffect(() => {
         async function getdata() {
             const userObject = await docRef.get().then(doc => {
@@ -39,7 +36,6 @@ export function UserProfile() {
         }
         getdata()
     }, [user, setUserInfo])
-
     function handleEdit() {
         setEdit(!edit)
     }
@@ -57,7 +53,7 @@ export function UserProfile() {
                     zipCode: userInfo?.zipCode,
                     email: userInfo?.email
                 })
-             } else {
+            } else {
                 await auth.currentUser?.updateProfile({
                     displayName: userInfo?.firstName
                 })
@@ -67,17 +63,15 @@ export function UserProfile() {
                     zipCode: userInfo?.zipCode,
                     email: userInfo?.email
                 })
-             } 
-        } catch(e:any)
-         {
+            }
+        } catch (e: any) {
             alert(e.code)
         }
-        if(user?.displayName == userInfo?.firstName) {
+        if (user?.displayName == userInfo?.firstName) {
             nav('/profile')
         }
-         handleEdit()
+        handleEdit()
     }
-
     function firstNameHandler(e: ChangeEvent<HTMLInputElement>) {
         setUserInfo({ ...userInfo, firstName: e.target.value });
     }
@@ -90,7 +84,6 @@ export function UserProfile() {
     function zipCodeHandler(e: ChangeEvent<HTMLInputElement>) {
         setUserInfo({ ...userInfo, zipCode: e.target.value });
     }
-
     return (
         <div>
             {edit ?
@@ -126,7 +119,6 @@ export function UserProfile() {
                     <Segment>Zipcode: {userInfo?.zipCode}</Segment>
                 </div>
             }
-
         </div>
     )
 }
