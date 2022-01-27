@@ -1,14 +1,14 @@
 
-import firebase from "firebase";
 
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Header } from "../../Components/header/Header";
-import { AuthContext } from "../../context/AuthContext";
+
 import { db } from '../../firebase'
 import { Loader } from 'semantic-ui-react'
 
 
 export function AuditionSearchView() {
+
 
 
 
@@ -31,9 +31,20 @@ export function AuditionSearchView() {
     }
 
 
+
     const [search, setSearch] = useState<string>('');
     const [theatersState, setTheaterState] = useState<any>('');
 
+    type auditionType = {
+        address: string;
+        callbacks: string;
+        dates: string; 
+        image: string;
+        signUp: string;
+        theater_name: string;
+        theater_uid: string; 
+        title: string; 
+    }
 
     // get the search
     const handleSearch = ({ target: { value } }: any) => {
@@ -58,43 +69,47 @@ export function AuditionSearchView() {
     }
 
     useEffect(() => {
+
         theatersToReturn().then(e => { setTheaterState(e); })
+
     }, [search]);
 
     return (
         <div className="performanceView-main-con">
             <div className="performance-body">
-                <h2>Performance Search</h2>
-                <div >
+                <h2>Audition Search</h2>
+                <div className="search-bar">
                     <div className="ui search">
                         <div className="ui icon input">
                             <input className="prompt" type="text" onChange={handleSearch} placeholder="Audtions..." />
                             <i className="search icon"></i>
                         </div>
                     </div>
-                </div>
 
-                {
-                    theatersState != '' ?
-                        theatersState.map((e: auditionType) => {
-
+                </div>  
+                <div className="search-results">
+                    {
+                        theatersState != '' ? 
+                        theatersState.map((e : auditionType) => {
+                        
                             return (
-                                <div key={e.theater_uid} className="theater-card">
+                                <div key={e.theater_uid}className="theater-card">
                                     <h2>{e.title}</h2>
-                                    <img src={e.image} />
-                                    <li>{e?.title}</li>
+                                    <img src={e.image}/>
+                                    <p>{e?.title}</p>
                                     <p>{e?.theater_name}</p>
-                                    <ul>
-                                        <li>{e?.dates}</li>
-                                        <li>{e?.address}</li>
-                                        <li>{e?.callbacks}</li>
-                                        <li><a href={e?.signUpLink}>Sign Up</a></li>
-                                    </ul>
+                                    
+                                        <p className="date">{e?.dates}</p>
+                                        <p>{e?.address}</p>
+                                        <p>{e?.callbacks}</p>
+                                        <a target="_blank" href={e?.signUp}>Sign Up</a>
+                                    
                                 </div>
                             )
-                        }) : <Loader active inline />
+                        }) : search.length == 0 ? <Loader active inline /> : <div>No Results Found</div>
+                    }
+                </div>
 
-                }
             </div>
         </div>
     )
