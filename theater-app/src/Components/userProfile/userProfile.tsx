@@ -4,6 +4,8 @@ import { Button, Form, Icon, Input, Label, Segment } from "semantic-ui-react";
 import { AuthContext } from "../../context/AuthContext"
 import { auth, db } from "../../firebase";
 import './userProfile.css'
+
+
 type UserType = {
     firstName?: string;
     lastName?: string;
