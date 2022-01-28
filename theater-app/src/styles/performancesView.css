@@ -1,59 +1,20 @@
-
-
 .performance-body {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+.performance-body .performance-title {
+  margin-top: 2rem;
+  margin-bottom: 0;
+}
 .search-bar {
   margin: 2.5rem;
+}
+.search-bar .ui.search .ui.icon.input .prompt {
+  border-color: var(--tealOpaque);
 }
 .search-results{
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-}
-.theater-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 1rem;
-  margin: 1.8rem;
-
-  width: 24rem;
-  min-height: 36rem;
-
-  border: 1px solid black;
-  border-radius: 14px;
-}
-
-.theater-card > img {
-  max-width: 10rem;
-  max-height: 15rem;
-  margin: 1rem;
-}
-
-.theater-card h3 {
-  align-self: flex-start;
-  font-size: clamp(1rem, 2.5vw, 1.5rem);
-  font-weight: 100;
-  word-wrap:unset;
-  margin: .5rem 0; 
-}
-.theater-card p {
-  align-self: flex-start;
-}
-.theater-card .date {
-  align-self: flex-start;
-  font-size: clamp(1.23rem, 2vw, 1.25rem);
-  font-weight: 400;
-}
-.theater-card Button {
-  height: 4rem;
-}
-.theater-card a {
-  font-size: 1.5rem;
-  
 }

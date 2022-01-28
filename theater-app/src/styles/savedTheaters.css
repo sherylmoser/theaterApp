@@ -1,0 +1,19 @@
+.saved-view {
+    margin-top: 2rem;
+}
+.saved-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.saved-title {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.theater-card.saved-theater {
+    margin-top: 0;
+    min-height: 20rem;
+
+}

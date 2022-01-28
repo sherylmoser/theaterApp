@@ -1,11 +1,14 @@
 
 import firebase from "firebase";
 import { ReactChild, ReactFragment, ReactPortal, useContext, useEffect, useMemo, useState } from "react";
+import { Button } from "semantic-ui-react";
 
 import { Header } from "../../Components/header/Header";
 import { AuthContext } from "../../context/AuthContext";
 import { db } from "../../firebase";
 
+import '../../styles/savedTheaters.css'
+import '../../styles/theaterCard.css'
 
 type theaterType = {
     name: string;
@@ -18,7 +21,7 @@ export function SavedTheaterView() {
     // user
     const { user } = useContext(AuthContext);
     const [savedTheaters, setSavedTheaters] = useState<any>([])
-    const [reloaded, setRealoaded] = useState<number>(0)
+    const [reloaded, setReloaded] = useState<number>(0)
 
 
 
@@ -50,26 +53,25 @@ export function SavedTheaterView() {
 
     return (
         <>
-
-            Saved Theaters
-
-            <div>
-                {savedTheaters ?
-                    savedTheaters?.map((theater: theaterType) => {
-
-                        return (
-                            <div className="theater-box">
-                                <h1>{theater?.name}</h1>
-                                <ul>
-                                    <li>{theater?.phone}</li>
-                                    <li>{theater?.website}</li>
-                                    <li>{theater?.zipcode}</li>
-                                </ul>
-                                <button onClick={() => handleDisconnect(theater)}>Disconnect</button>
-                            </div>
-                        )
-                    }) : <div>No connected theater</div>
-                }
+            <div className="saved-view">
+                <h1 className="saved-title">Saved Theaters</h1>
+                <div className="saved-body">
+                    {savedTheaters ?
+                        savedTheaters?.map((theater: theaterType) => {
+                            return (
+                                <div className="theater-card saved-theater">
+                                    <h2>{theater?.name}</h2>
+                                    <div className="date-address-div">
+                                        <p>{theater?.phone}</p>
+                                        <p>{theater?.website}</p>
+                                        <p>{theater?.zipcode}</p>
+                                    </div>
+                                    <Button className="connect-button" onClick={() => handleDisconnect(theater)}>Disconnect</Button>
+                                </div>
+                            )
+                        }) : <div>No connected theater</div>
+                    }
+                </div>
             </div>
 
         </>
